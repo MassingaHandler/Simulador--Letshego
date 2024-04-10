@@ -206,7 +206,7 @@ def main(page: ft.Page):
             run_spacing=30,
             controls=[
                 ft.Text(
-                    value='Credito novo ou Reforco',
+                    value='Reforco',
                     size=20,
                     color=ft.colors.BLACK,
                     weight=ft.FontWeight.BOLD,
