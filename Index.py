@@ -54,7 +54,7 @@ def main(page: ft.Page):
                     weight=ft.FontWeight.BOLD,
                 ),
                 ft.TextField(
-                    col=6,
+                    col={'sm':12, 'lg':6},
                     label='Nome completo ...',
                     label_style=ft.TextStyle(
                         weight=ft.FontWeight.BOLD, color=ft.colors.GREY_800),
@@ -62,7 +62,7 @@ def main(page: ft.Page):
                         weight=ft.FontWeight.BOLD, color=ft.colors.GREY_800),
                 ),
                 ft.TextField(
-                    col=6,
+                    col={'sm':12, 'lg':6},
                     label='Contacto ...',
                     label_style=ft.TextStyle(
                         weight=ft.FontWeight.BOLD, color=ft.colors.GREY_800),
@@ -84,64 +84,121 @@ def main(page: ft.Page):
                         ft.dropdown.Option(text='ISDEF'),
                     ],
                     label_style=ft.TextStyle(
+                        weight=ft.FontWeight.BOLD, color=ft.colors.BLACK, ),
+                    text_style=ft.TextStyle(
+                        weight=ft.FontWeight.BOLD, color=ft.colors.BLACK, bgcolor=ft.colors.WHITE),
+                        bgcolor=ft.colors.WHITE,
+                ),
+
+                ft.Text(
+                    value='Credito novo',
+                    size=20,
+                    color=ft.colors.BLACK,
+                    weight=ft.FontWeight.BOLD,
+                ),
+                salario_novo := ft.TextField(
+                    col={'sm':12, 'lg':4},
+                    label='Salario do Bruto...',
+                    label_style=ft.TextStyle(
                         weight=ft.FontWeight.BOLD, color=ft.colors.GREY_800),
                     text_style=ft.TextStyle(
                         weight=ft.FontWeight.BOLD, color=ft.colors.GREY_800),
+                    input_filter=ft.InputFilter(
+                        allow=True,
+                        regex_string=r"[0-9]"
+                    ),
                 ),
-
-                # ft.Text(
-                #     value='Credito novo',
-                #     size=20,
-                #     color=ft.colors.BLACK,
-                #     weight=ft.FontWeight.BOLD,
-                # ),
-                # salario_novo := ft.TextField(
-                #     col=6,
-                #     label='Salario do Bruto...',
-                #     label_style=ft.TextStyle(
-                #         weight=ft.FontWeight.BOLD, color=ft.colors.GREY_800),
-                #     text_style=ft.TextStyle(
-                #         weight=ft.FontWeight.BOLD, color=ft.colors.GREY_800),
-                # ),
-                # descontos_novo := ft.TextField(
-                #     col=6,
-                #     label='Todos os descontos...',
-                #     label_style=ft.TextStyle(
-                #         weight=ft.FontWeight.BOLD, color=ft.colors.GREY_800),
-                #     text_style=ft.TextStyle(
-                #         weight=ft.FontWeight.BOLD, color=ft.colors.GREY_800),
-                # ),
+                descontos_novo := ft.TextField(
+                    col={'sm':12, 'lg':4},
+                    label='Todos os descontos...',
+                    label_style=ft.TextStyle(
+                        weight=ft.FontWeight.BOLD,
+                        color=ft.colors.GREY_800
+                    ),
+                    text_style=ft.TextStyle(
+                        weight=ft.FontWeight.BOLD, 
+                        color=ft.colors.GREY_800
+                    ),
+                    input_filter=ft.InputFilter(
+                        allow=True,
+                        regex_string=r"[0-9]"
+                    ),
+                ),
+                periodo_emprestimo := ft.TextField(
+                    col={'sm':12, 'lg':4},
+                    label='Em quanto tempo gostaria de descontar...',
+                    label_style=ft.TextStyle(
+                        weight=ft.FontWeight.BOLD, color=ft.colors.GREY_800),
+                    text_style=ft.TextStyle(
+                        weight=ft.FontWeight.BOLD, color=ft.colors.GREY_800),
+                    input_filter=ft.InputFilter(
+                        allow=True,
+                        regex_string=r"[0-9]"
+                    ),
+                ),
             ],
         )
     )
     ft.Divider(height=6, color=ft.colors.BLACK),
 
-    # Calcular novo credito
+    #Calcular novo credito
 
-    # def calcular_novo(e):
-    #     import math
+    def calcular_novo(e):
+        import math
 
-    #     salario_liquido = salario_novo
-    #     desconto_cal = descontos_novo
+        salario_liquido = salario_novo.value
+        desconto_cal = descontos_novo.value
+        periodo_emprestimo_real = periodo_emprestimo.value
         
-    #     salario_real = salario_liquido / 2
-    #     salario_real2 = salario_real - desconto_cal
+        salario_real = float(salario_liquido) / 2
+        capacidade_desconto = float(salario_real) - float(desconto_cal)
+        taxa_anual = 0.34
+        taxa_mensal = taxa_anual / 12
+        
+        #periodo_emprestimo_real = periodo_emprestimo  # em anos
 
+        numero_pagamentos = float(periodo_emprestimo_real) * 12
+        valor_emprestimo = (float(capacidade_desconto) * (1 - (1 + taxa_mensal)** - float(numero_pagamentos))) / (taxa_mensal)
+        #emprestimo_maximo_formatado = '{:,.2f}'.format(emprestimo_maximo)
 
+        tabela_result.rows.append(
+                ft.DataRow(
+                    cells=[
+                        ft.DataCell(
+                            content=ft.Text(value = f'{numero_pagamentos:.0f} Meses'),
+                        ),
+                        ft.DataCell(
+                            content=ft.Text(value = f'{capacidade_desconto:,.2f} MZN')
+                        ),
+                        ft.DataCell(
+                            content=ft.Text(value = f'{valor_emprestimo:,.2f} MZN'),
+                        ),
+                    ],
+                    selected=False,
+                    on_select_changed=toggle_select,
+                    data=0,
+                ),    
+            )
+        
+        tabela_result.update()
+            
 
+    btn_novo = ft.Row(
+        alignment=ft.MainAxisAlignment.START,
+        controls=[
+            ft.ElevatedButton(
+                text='Calcular',
+                bgcolor='#312f83',
+                color=ft.colors.WHITE,
+                on_click=calcular_novo,
+            )
+        ]
+    )
 
-
-    # btn_novo = ft.Row(
-    #     alignment=ft.MainAxisAlignment.START,
-    #     controls=[
-    #         ft.ElevatedButton(
-    #             text='Calcular',
-    #             bgcolor='#312f83',
-    #             color=ft.colors.WHITE,
-    #             on_click=calcular_novo,
-    #         )
-    #     ]
-    # )
+    def toggle_select(e):
+        e.control.selected = not e.control.selected
+        print(f'Selecionando a linha de indice{e.control.data}')
+        e.control.update()
 
     formulario_reforco = ft.Container(
         padding=ft.padding.only(top=30),
@@ -155,31 +212,43 @@ def main(page: ft.Page):
                     weight=ft.FontWeight.BOLD,
                 ),
                 salario_bruto := ft.TextField(
-                    col=6,
+                    col={'sm':12, 'lg':6},
                     label='Salario Bruto',
                     label_style=ft.TextStyle(
                         weight=ft.FontWeight.BOLD, color=ft.colors.GREY_800),
                     text_style=ft.TextStyle(
                         weight=ft.FontWeight.BOLD, color=ft.colors.GREY_800),
+                    input_filter=ft.InputFilter(
+                        allow=True,
+                        regex_string=r"[0-9]"
+                    ),
                 ),
                 vl_dividas_descontos := ft.TextField(
-                    col=6,
+                    col={'sm':12, 'lg':6},
                     label='Valor total de todas as dividas e descontos...',
                     label_style=ft.TextStyle(
                         weight=ft.FontWeight.BOLD, color=ft.colors.GREY_800),
                     text_style=ft.TextStyle(
                         weight=ft.FontWeight.BOLD, color=ft.colors.GREY_800),
+                    input_filter=ft.InputFilter(
+                        allow=True,
+                        regex_string=r"[0-9]"
+                    ),
                 ),
                 vl_desejado := ft.TextField(
-                    col=6,
+                    col={'sm':12, 'lg':6},
                     label='Quanto e que o cliente gostaria de ter....',
                     label_style=ft.TextStyle(
                         weight=ft.FontWeight.BOLD, color=ft.colors.GREY_800),
                     text_style=ft.TextStyle(
                         weight=ft.FontWeight.BOLD, color=ft.colors.GREY_800),
+                    input_filter=ft.InputFilter(
+                        allow=True,
+                        regex_string=r"[0-9]"
+                    ),
                 ),
                 tempo_pagamento := ft.TextField(
-                    col=6,
+                    col={'sm':12, 'lg':6},
                     label='Em quantos anos gostaria de pagar....',
                     label_style=ft.TextStyle(weight=ft.FontWeight.BOLD, color=ft.colors.GREY_800),
                     text_style=ft.TextStyle(weight=ft.FontWeight.BOLD, color=ft.colors.GREY_800),
@@ -203,9 +272,9 @@ def main(page: ft.Page):
 
         valor_real = float(valor_sem_divida) - float(valor_total)
         meses = math.ceil(int(anos_a_pagar) * 12)
-        juros = 1.033**meses
+        juros = 1.034**meses
 
-        prestacao_mensal = (float(valor_desejado) * float(juros) * float(0.033)) / (float(juros) - 1)
+        prestacao_mensal = (float(valor_desejado) * float(juros) * float(0.034)) / (float(juros) - 1)
 
         
         # juros_mensal = math.ceil(int(valor_desejado) * 0.02836)
@@ -222,10 +291,10 @@ def main(page: ft.Page):
                             content=ft.Text(value = meses),
                         ),
                         ft.DataCell(
-                            content=ft.Text(value = f'R$ {prestacao_mensal:.2f}')
+                            content=ft.Text(value = f' {prestacao_mensal:,.2f} MZN')
                         ),
                         ft.DataCell(
-                            content=ft.Text(value = valor_desejado),
+                            content=ft.Text(value = f' {valor_desejado} MZN'),
                         ),
                     ],
                     selected=False,
@@ -279,6 +348,7 @@ def main(page: ft.Page):
     resultado = ft.Container(
         padding=ft.padding.only(top=20),
         content=ft.ResponsiveRow(
+            col={'lg': 12},
             controls=[
                 ft.Text(
                     value='Resultado',
@@ -286,13 +356,21 @@ def main(page: ft.Page):
                     color=ft.colors.BLACK,
                     weight=ft.FontWeight.BOLD,
                 ),
+                
                 tabela_result := ft.DataTable(
                     columns=[
-                        ft.DataColumn(label=ft.Text("Meses"), numeric=True),
-                        ft.DataColumn(label=ft.Text(
-                            "Prestacao Mensal"), numeric=True),
-                        ft.DataColumn(label=ft.Text(
-                            "Volor ToTal do emprestimo"), numeric=True),
+                        ft.DataColumn(
+                            label=ft.Text("Meses"), 
+                            numeric=True
+                        ),
+                        ft.DataColumn(
+                            label=ft.Text("Prestacao Mensal"), 
+                            numeric=True,
+                        ),
+                        ft.DataColumn(
+                            label=ft.Text("Volor ToTal do emprestimo"), 
+                            numeric=True,
+                        ),
                     ],
                     rows=[
                         # ft.DataRow(
@@ -394,7 +472,9 @@ def main(page: ft.Page):
                     vertical_lines=ft.BorderSide(
                         width=0.50, color=ft.colors.BLACK),
                 )
-            ]
+
+            ],
+            #scroll=ft.ScrollMode.AUTO,    
         )
     )
 
@@ -406,7 +486,7 @@ def main(page: ft.Page):
             controls=[
                 header,
                 formulario_novo,
-                # btn_novo,
+                btn_novo,
                 formulario_reforco,
                 btn_reforco,
                 resultado,
