@@ -2,12 +2,14 @@ import flet as ft
 
 
 def main(page: ft.Page):
-    page.bgcolor = "#fdfdfd"
-    page.padding = ft.padding.all(30)
+    page.bgcolor = "#fdfdf9"
+    page.padding = 0
     page.scroll = ft.ScrollMode.HIDDEN
+    
+    
 
     header = ft.Container(
-        bgcolor= '#312f83',
+        bgcolor= '#fbd400',
         height=80,
         border_radius=ft.border_radius.only(top_left=15, top_right=15),
         padding=ft.padding.only(left=20, right=20),
@@ -15,7 +17,7 @@ def main(page: ft.Page):
             controls=[
                 ft.Text(
                     value='Banco Letshego',
-                    color=ft.colors.WHITE,
+                    color=ft.colors.BLACK,
                     weight=ft.FontWeight.BOLD,
                     size=15,
                 ),
@@ -24,13 +26,13 @@ def main(page: ft.Page):
                     controls=[
                         ft.Text(
                             value='Patricio',
-                            color=ft.colors.WHITE,
+                            color=ft.colors.BLACK,
                             weight=ft.FontWeight.BOLD,
                             size=15,
                         ),
                         ft.Icon(
                             name=ft.icons.PERSON,
-                            color=ft.colors.WHITE,
+                            color=ft.colors.BLACK,
                         ),
                     ]
                 )
@@ -40,10 +42,11 @@ def main(page: ft.Page):
         ),
 
     )
-    ft.Divider(height=6, color=ft.colors.BLACK),
+    
 
     formulario_novo = ft.Container(
         padding=ft.padding.only(top=30),
+        #border=ft.border.only(top=1, bottom=1),
         content=ft.ResponsiveRow(
             run_spacing=30,
             controls=[
@@ -55,19 +58,29 @@ def main(page: ft.Page):
                 ),
                 ft.TextField(
                     col={'sm':12, 'lg':6},
-                    label='Nome completo ...',
+                    label='Nome completo...',
                     label_style=ft.TextStyle(
-                        weight=ft.FontWeight.BOLD, color=ft.colors.GREY_800),
+                        weight=ft.FontWeight.BOLD,
+                        color=ft.colors.GREY_800
+                    ),
                     text_style=ft.TextStyle(
-                        weight=ft.FontWeight.BOLD, color=ft.colors.GREY_800),
+                        weight=ft.FontWeight.BOLD,
+                        color=ft.colors.GREY_800
+                    ),
+                    focused_border_color= '#fbd400',
                 ),
                 ft.TextField(
                     col={'sm':12, 'lg':6},
-                    label='Contacto ...',
+                    label='Contacto...',
                     label_style=ft.TextStyle(
-                        weight=ft.FontWeight.BOLD, color=ft.colors.GREY_800),
+                        weight=ft.FontWeight.BOLD, 
+                        color=ft.colors.GREY_800
+                    ),
                     text_style=ft.TextStyle(
-                        weight=ft.FontWeight.BOLD, color=ft.colors.GREY_800),
+                        weight=ft.FontWeight.BOLD, 
+                        color=ft.colors.GREY_800
+                    ),
+                    focused_border_color= '#fbd400',
                 ),
 
                 ft.Dropdown(
@@ -91,26 +104,35 @@ def main(page: ft.Page):
                 ),
 
                 ft.Text(
-                    value='Credito novo',
+                    value='Novo Credito',
                     size=20,
                     color=ft.colors.BLACK,
                     weight=ft.FontWeight.BOLD,
                 ),
                 salario_novo := ft.TextField(
                     col={'sm':12, 'lg':4},
-                    label='Salario do Bruto...',
+                    label='Salario Bruto...',
+                    helper_text = 'Salario que reflete na folha de salario...',
+                    helper_style = ft.TextStyle(italic=True, size=12, color=ft.colors.BLACK, weight=ft.FontWeight.BOLD),
                     label_style=ft.TextStyle(
-                        weight=ft.FontWeight.BOLD, color=ft.colors.GREY_800),
+                        weight=ft.FontWeight.BOLD, 
+                        color=ft.colors.GREY_800
+                    ),
                     text_style=ft.TextStyle(
-                        weight=ft.FontWeight.BOLD, color=ft.colors.GREY_800),
+                        weight=ft.FontWeight.BOLD, 
+                        color=ft.colors.GREY_800
+                    ),
                     input_filter=ft.InputFilter(
                         allow=True,
-                        regex_string=r"[0-9]"
+                        regex_string=r"[0-9-.]"
                     ),
+                    focused_border_color= '#fbd400',
                 ),
                 descontos_novo := ft.TextField(
                     col={'sm':12, 'lg':4},
-                    label='Todos os descontos...',
+                    label='Descontos...',
+                    helper_text = 'Todos descontos do cliente (Ex: subsidios...)',
+                    helper_style = ft.TextStyle(italic=True, size=12, color=ft.colors.BLACK, weight=ft.FontWeight.BOLD),
                     label_style=ft.TextStyle(
                         weight=ft.FontWeight.BOLD,
                         color=ft.colors.GREY_800
@@ -121,20 +143,30 @@ def main(page: ft.Page):
                     ),
                     input_filter=ft.InputFilter(
                         allow=True,
-                        regex_string=r"[0-9]"
+                        regex_string=r"[0-9-.]"
                     ),
+                    focused_border_color= '#fbd400',
                 ),
                 periodo_emprestimo := ft.TextField(
                     col={'sm':12, 'lg':4},
-                    label='Em quanto tempo gostaria de descontar...',
+                    label='Anos a Descontar...',
+                    helper_text = 'Colocar anos em que o cliente gostaria de ser descontado...',
+                    helper_style = ft.TextStyle(italic=True, size=12, color=ft.colors.BLACK, weight=ft.FontWeight.BOLD),
+                    # error_text='Colocar so numeros',
+                    # error_style=ft.TextStyle(size = 15),
                     label_style=ft.TextStyle(
-                        weight=ft.FontWeight.BOLD, color=ft.colors.GREY_800),
+                        weight=ft.FontWeight.BOLD, 
+                        color=ft.colors.GREY_800
+                    ),
                     text_style=ft.TextStyle(
-                        weight=ft.FontWeight.BOLD, color=ft.colors.GREY_800),
+                        weight=ft.FontWeight.BOLD, 
+                        color=ft.colors.GREY_800
+                    ),
                     input_filter=ft.InputFilter(
                         allow=True,
-                        regex_string=r"[0-9]"
+                        regex_string=r"[0-9-.]"
                     ),
+                    focused_border_color= '#fbd400',
                 ),
             ],
         )
@@ -177,6 +209,7 @@ def main(page: ft.Page):
                     selected=False,
                     on_select_changed=toggle_select,
                     data=0,
+                    
                 ),    
             )
         
@@ -188,7 +221,7 @@ def main(page: ft.Page):
         controls=[
             ft.ElevatedButton(
                 text='Calcular',
-                bgcolor='#312f83',
+                bgcolor=ft.colors.BLACK,
                 color=ft.colors.WHITE,
                 on_click=calcular_novo,
             )
@@ -214,45 +247,75 @@ def main(page: ft.Page):
                 salario_bruto := ft.TextField(
                     col={'sm':12, 'lg':6},
                     label='Salario Bruto',
+                    helper_text = 'Salario que reflete na folha de salario...',
+                    helper_style = ft.TextStyle(italic=True, size=12, color=ft.colors.BLACK, weight=ft.FontWeight.BOLD),
                     label_style=ft.TextStyle(
-                        weight=ft.FontWeight.BOLD, color=ft.colors.GREY_800),
+                        weight=ft.FontWeight.BOLD, 
+                        color=ft.colors.GREY_800
+                    ),
                     text_style=ft.TextStyle(
-                        weight=ft.FontWeight.BOLD, color=ft.colors.GREY_800),
+                        weight=ft.FontWeight.BOLD, 
+                        color=ft.colors.GREY_800
+                    ),
                     input_filter=ft.InputFilter(
                         allow=True,
-                        regex_string=r"[0-9]"
+                        regex_string=r"[0-9-.]"
                     ),
+                    focused_border_color= '#fbd400',
                 ),
                 vl_dividas_descontos := ft.TextField(
                     col={'sm':12, 'lg':6},
-                    label='Valor total de todas as dividas e descontos...',
+                    label='Descontos',
+                    helper_text = 'Somar todos descontos das dividas que tem em outros bancos inclusive letshego...',
+                    helper_style = ft.TextStyle(italic=True, size=11, color=ft.colors.BLACK, weight=ft.FontWeight.BOLD),
                     label_style=ft.TextStyle(
-                        weight=ft.FontWeight.BOLD, color=ft.colors.GREY_800),
+                        weight=ft.FontWeight.BOLD, 
+                        color=ft.colors.GREY_800
+                    ),
                     text_style=ft.TextStyle(
-                        weight=ft.FontWeight.BOLD, color=ft.colors.GREY_800),
+                        weight=ft.FontWeight.BOLD, 
+                        color=ft.colors.GREY_800
+                    ),
                     input_filter=ft.InputFilter(
                         allow=True,
-                        regex_string=r"[0-9]"
+                        regex_string=r"[0-9-.]"
                     ),
+                    focused_border_color= '#fbd400',
                 ),
                 vl_desejado := ft.TextField(
                     col={'sm':12, 'lg':6},
-                    label='Quanto e que o cliente gostaria de ter....',
+                    label='Valor do Emprestimo....',
+                    helper_text = 'Valor total que o cliente gostaria de ter...',
+                    helper_style = ft.TextStyle(italic=True, size=12, color=ft.colors.BLACK, weight=ft.FontWeight.BOLD),
                     label_style=ft.TextStyle(
-                        weight=ft.FontWeight.BOLD, color=ft.colors.GREY_800),
+                        weight=ft.FontWeight.BOLD, 
+                        color=ft.colors.GREY_800
+                    ),
                     text_style=ft.TextStyle(
-                        weight=ft.FontWeight.BOLD, color=ft.colors.GREY_800),
+                        weight=ft.FontWeight.BOLD, 
+                        color=ft.colors.GREY_800
+                    ),
                     input_filter=ft.InputFilter(
                         allow=True,
-                        regex_string=r"[0-9]"
+                        regex_string=r"[0-9-.]"
                     ),
+                    focused_border_color= '#fbd400',
                 ),
                 tempo_pagamento := ft.TextField(
                     col={'sm':12, 'lg':6},
-                    label='Em quantos anos gostaria de pagar....',
-                    label_style=ft.TextStyle(weight=ft.FontWeight.BOLD, color=ft.colors.GREY_800),
-                    text_style=ft.TextStyle(weight=ft.FontWeight.BOLD, color=ft.colors.GREY_800),
-                    input_filter=ft.NumbersOnlyInputFilter()
+                    label='Anos a ser Descontado',
+                    helper_text = 'Colocar anos em que o cliente gostaria de ser descontado...',
+                    helper_style = ft.TextStyle(italic=True, size=12, color=ft.colors.BLACK, weight=ft.FontWeight.BOLD),
+                    label_style=ft.TextStyle(
+                        weight=ft.FontWeight.BOLD, 
+                        color=ft.colors.GREY_800
+                    ),
+                    text_style=ft.TextStyle(
+                        weight=ft.FontWeight.BOLD, 
+                        color=ft.colors.GREY_800
+                    ),
+                    input_filter=ft.NumbersOnlyInputFilter(),
+                    focused_border_color= '#fbd400',
                 )
             ],
         )
@@ -333,7 +396,7 @@ def main(page: ft.Page):
         controls=[
             ft.ElevatedButton(
                 text='Calcular',
-                bgcolor='#312f83',
+                bgcolor=ft.colors.BLACK,
                 color=ft.colors.WHITE,
                 on_click=calcular_reforco,
             )
@@ -345,10 +408,25 @@ def main(page: ft.Page):
         print(f'Selecionando a linha de indice{e.control.data}')
         e.control.update()
 
+
+    
+
+    def resized(e):
+        if page.web:
+            datatable.current.width = page.width - 70
+        else:
+            datatable.current.width = page.window_width - 70
+        
+        datatable.current.update()
+
+    page.on_resize = resized
+
+    datatable = ft.Ref[ft.DataTable]()
+
     resultado = ft.Container(
         padding=ft.padding.only(top=20),
+        
         content=ft.ResponsiveRow(
-            col={'lg': 12},
             controls=[
                 ft.Text(
                     value='Resultado',
@@ -357,131 +435,65 @@ def main(page: ft.Page):
                     weight=ft.FontWeight.BOLD,
                 ),
                 
-                tabela_result := ft.DataTable(
-                    columns=[
-                        ft.DataColumn(
-                            label=ft.Text("Meses"), 
-                            numeric=True
-                        ),
-                        ft.DataColumn(
-                            label=ft.Text("Prestacao Mensal"), 
-                            numeric=True,
-                        ),
-                        ft.DataColumn(
-                            label=ft.Text("Volor ToTal do emprestimo"), 
-                            numeric=True,
-                        ),
+                ft.Row(
+                    scroll = ft.ScrollMode.AUTO,
+                    
+                    controls=[
+                        tabela_result := ft.DataTable(
+                            ref = datatable,
+                            width = (page.width if page.width else page.window_width) - 70,
+                            
+                            columns=[
+                                ft.DataColumn(
+                                ft.Text("Meses"), 
+                                numeric=False,
+                                      
+                                ),
+                                ft.DataColumn(
+                                    ft.Text("Prestacao Mensal"), 
+                                    numeric=False,
+                                ),
+                                ft.DataColumn(
+                                    ft.Text("Volor Total do emprestimo"), 
+                                    numeric=False,
+                                ),
+                            ],
+                            rows=[
+                                
+                            ],
+                            show_checkbox_column=False,
+                            # border_radius=ft.border_radius.only(
+                            #     bottom_left=15, 
+                            #     bottom_right=15,
+                            # ),
+                            border=ft.border.all(1),
+                            #bgcolor=ft.colors.GREY_300,
+                            data_text_style=ft.TextStyle(
+                                color=ft.colors.BLACK,
+                                weight=ft.FontWeight.BOLD,
+                            ),
+                            heading_row_color='#fbd400',
+                            heading_text_style=ft.TextStyle(
+                                weight=ft.FontWeight.BOLD,
+                                size=12,
+                                color=ft.colors.BLACK,
+                            ),
+                            vertical_lines=ft.BorderSide(
+                                width=0.50,
+                                color=ft.colors.BLACK,
+                            ),
+                        )
                     ],
-                    rows=[
-                        # ft.DataRow(
-                        #    cells=[
-                        #       ft.DataCell(
-                        #          content=ft.Text("1"),
-                        #       ),
-                        #       ft.DataCell(
-                        #          content=ft.Text("2000MT")
-                        #       ),
-                        #       ft.DataCell(
-                        #          content=ft.Text("50.000,00MT"),
-                        #       ),
-                        #    ],
-                        #    selected = False,
-                        #    on_select_changed= toggle_select,
-                        #    data= 0,
-                        # ),
-                        # ft.DataRow(
-                        #    cells=[
-                        #       ft.DataCell(
-                        #          content=ft.Text("2"),
-                        #       ),
-                        #       ft.DataCell(
-                        #          content=ft.Text("2000MT")
-                        #       ),
-                        #       ft.DataCell(
-                        #          content=ft.Text("50.000,00MT"),
-                        #       ),
-                        #    ],
-                        #    selected = False,
-                        #    on_select_changed= toggle_select,
-                        #    data= 0,
-                        # ),
-                        # ft.DataRow(
-                        #    cells=[
-                        #       ft.DataCell(
-                        #          content=ft.Text("3"),
-                        #       ),
-                        #       ft.DataCell(
-                        #          content=ft.Text("2000MT")
-                        #       ),
-                        #       ft.DataCell(
-                        #          content=ft.Text("50.000,00MT"),
-                        #       ),
-                        #    ],
-                        #    selected = False,
-                        #    on_select_changed= toggle_select,
-                        #    data= 0,
-                        # ),
-                        # ft.DataRow(
-                        #    cells=[
-                        #       ft.DataCell(
-                        #          content=ft.Text("4"),
-                        #       ),
-                        #       ft.DataCell(
-                        #          content=ft.Text("2000MT")
-                        #       ),
-                        #       ft.DataCell(
-                        #          content=ft.Text("50.000,00MT"),
-                        #       ),
-                        #    ],
-                        #    selected = False,
-                        #    on_select_changed= toggle_select,
-                        #    data= 0,
-                        # ),
-                        # ft.DataRow(
-                        #    cells=[
-                        #       ft.DataCell(
-                        #          content=ft.Text("5"),
-                        #       ),
-                        #       ft.DataCell(
-                        #          content=ft.Text("2000MT")
-                        #       ),
-                        #       ft.DataCell(
-                        #          content=ft.Text("50.000,00MT"),
-                        #       ),
-                        #    ],
-                        #    selected = False,
-                        #    on_select_changed= toggle_select,
-                        #    data= 0,
-                        # )
-                    ],
-                    show_checkbox_column=False,
-                    border_radius=ft.border_radius.only(
-                        bottom_left=15, bottom_right=15),
-                    border=ft.border.all(color=ft.colors.BLACK),
-                    bgcolor=ft.colors.GREY_300,
-                    data_text_style=ft.TextStyle(
-                        size=15,
-                        color=ft.colors.BLACK,
-                        weight=ft.FontWeight.BOLD,
-                    ),
-                    heading_row_color='#312f83',
-                    heading_text_style=ft.TextStyle(
-                        weight=ft.FontWeight.BOLD,
-                        size=15,
-                    ),
-                    vertical_lines=ft.BorderSide(
-                        width=0.50, color=ft.colors.BLACK),
+                    
                 )
-
             ],
-            #scroll=ft.ScrollMode.AUTO,    
         )
     )
 
     layout = ft.Container(
         expand=True,
         # bgcolor=ft.colors.GREY_300,
-        # padding=ft.padding.all(20),
+        padding=ft.padding.all(30),
         content=ft.Column(
             controls=[
                 header,
