@@ -357,7 +357,7 @@ def main(page: ft.Page):
                             content=ft.Text(value = f' {prestacao_mensal:,.2f} MZN')
                         ),
                         ft.DataCell(
-                            content=ft.Text(value = f' {valor_desejado:,.2f} MZN'),
+                            content=ft.Text(value = f' {valor_desejado} MZN'),
                         ),
                     ],
                     selected=False,
