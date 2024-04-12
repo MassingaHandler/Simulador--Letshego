@@ -357,7 +357,7 @@ def main(page: ft.Page):
                             content=ft.Text(value = f' {prestacao_mensal:,.2f} MZN')
                         ),
                         ft.DataCell(
-                            content=ft.Text(value = f' {valor_desejado} MZN'),
+                            content=ft.Text(value = f' {valor_desejado:,.2f} MZN'),
                         ),
                     ],
                     selected=False,
@@ -456,6 +456,7 @@ def main(page: ft.Page):
                                 ft.DataColumn(
                                     ft.Text("Volor Total do emprestimo"), 
                                     numeric=False,
+                                   
                                 ),
                             ],
                             rows=[
@@ -475,8 +476,9 @@ def main(page: ft.Page):
                             heading_row_color='#fbd400',
                             heading_text_style=ft.TextStyle(
                                 weight=ft.FontWeight.BOLD,
-                                size=12,
+                                size=14,
                                 color=ft.colors.BLACK,
+                                
                             ),
                             vertical_lines=ft.BorderSide(
                                 width=0.50,
