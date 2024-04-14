@@ -50,58 +50,58 @@ def main(page: ft.Page):
         content=ft.ResponsiveRow(
             run_spacing=30,
             controls=[
-                ft.Text(
-                    value='Dados do cliente',
-                    size=20,
-                    color=ft.colors.BLACK,
-                    weight=ft.FontWeight.BOLD,
-                ),
-                ft.TextField(
-                    col={'sm':12, 'lg':6},
-                    label='Nome completo...',
-                    label_style=ft.TextStyle(
-                        weight=ft.FontWeight.BOLD,
-                        color=ft.colors.GREY_800
-                    ),
-                    text_style=ft.TextStyle(
-                        weight=ft.FontWeight.BOLD,
-                        color=ft.colors.GREY_800
-                    ),
-                    focused_border_color= '#fbd400',
-                ),
-                ft.TextField(
-                    col={'sm':12, 'lg':6},
-                    label='Contacto...',
-                    label_style=ft.TextStyle(
-                        weight=ft.FontWeight.BOLD, 
-                        color=ft.colors.GREY_800
-                    ),
-                    text_style=ft.TextStyle(
-                        weight=ft.FontWeight.BOLD, 
-                        color=ft.colors.GREY_800
-                    ),
-                    focused_border_color= '#fbd400',
-                ),
+                # ft.Text(
+                #     value='Dados do cliente',
+                #     size=20,
+                #     color=ft.colors.BLACK,
+                #     weight=ft.FontWeight.BOLD,
+                # ),
+                # ft.TextField(
+                #     col={'sm':12, 'lg':6},
+                #     label='Nome completo...',
+                #     label_style=ft.TextStyle(
+                #         weight=ft.FontWeight.BOLD,
+                #         color=ft.colors.GREY_800
+                #     ),
+                #     text_style=ft.TextStyle(
+                #         weight=ft.FontWeight.BOLD,
+                #         color=ft.colors.GREY_800
+                #     ),
+                #     focused_border_color= '#fbd400',
+                # ),
+                # ft.TextField(
+                #     col={'sm':12, 'lg':6},
+                #     label='Contacto...',
+                #     label_style=ft.TextStyle(
+                #         weight=ft.FontWeight.BOLD, 
+                #         color=ft.colors.GREY_800
+                #     ),
+                #     text_style=ft.TextStyle(
+                #         weight=ft.FontWeight.BOLD, 
+                #         color=ft.colors.GREY_800
+                #     ),
+                #     focused_border_color= '#fbd400',
+                # ),
 
-                ft.Dropdown(
-                    col=12,
-                    label='Selecione a entidade',
-                    options=[
-                        ft.dropdown.Option(key=1, text='Marinha de Guerra'),
-                        ft.dropdown.Option(text='Exercito'),
-                        ft.dropdown.Option(text='MINT'),
-                        ft.dropdown.Option(text='Reservistas'),
-                        ft.dropdown.Option(text='Interior'),
-                        ft.dropdown.Option(text='Pensionista'),
-                        ft.dropdown.Option(text='Forcas areas'),
-                        ft.dropdown.Option(text='ISDEF'),
-                    ],
-                    label_style=ft.TextStyle(
-                        weight=ft.FontWeight.BOLD, color=ft.colors.BLACK, ),
-                    text_style=ft.TextStyle(
-                        weight=ft.FontWeight.BOLD, color=ft.colors.BLACK, bgcolor=ft.colors.WHITE),
-                        bgcolor=ft.colors.WHITE,
-                ),
+                # ft.Dropdown(
+                #     col=12,
+                #     label='Selecione a entidade',
+                #     options=[
+                #         ft.dropdown.Option(key=1, text='Marinha de Guerra'),
+                #         ft.dropdown.Option(text='Exercito'),
+                #         ft.dropdown.Option(text='MINT'),
+                #         ft.dropdown.Option(text='Reservistas'),
+                #         ft.dropdown.Option(text='Interior'),
+                #         ft.dropdown.Option(text='Pensionista'),
+                #         ft.dropdown.Option(text='Forcas areas'),
+                #         ft.dropdown.Option(text='ISDEF'),
+                #     ],
+                #     label_style=ft.TextStyle(
+                #         weight=ft.FontWeight.BOLD, color=ft.colors.BLACK, ),
+                #     text_style=ft.TextStyle(
+                #         weight=ft.FontWeight.BOLD, color=ft.colors.BLACK, bgcolor=ft.colors.WHITE),
+                #         bgcolor=ft.colors.WHITE,
+                # ),
 
                 ft.Text(
                     value='Novo Credito',
@@ -184,7 +184,7 @@ def main(page: ft.Page):
         
         salario_real = float(salario_liquido) / 2
         capacidade_desconto = float(salario_real) - float(desconto_cal)
-        taxa_anual = 0.34
+        taxa_anual = 0.32
         taxa_mensal = taxa_anual / 12
         
         #periodo_emprestimo_real = periodo_emprestimo  # em anos
@@ -335,9 +335,9 @@ def main(page: ft.Page):
 
         valor_real = float(valor_sem_divida) - float(valor_total)
         meses = math.ceil(int(anos_a_pagar) * 12)
-        juros = 1.034**meses
+        juros = 1.032**meses
 
-        prestacao_mensal = (float(valor_desejado) * float(juros) * float(0.034)) / (float(juros) - 1)
+        prestacao_mensal = (float(valor_desejado) * float(juros) * float(0.032)) / (float(juros) - 1)
 
         
         # juros_mensal = math.ceil(int(valor_desejado) * 0.02836)
