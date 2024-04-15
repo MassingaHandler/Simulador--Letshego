@@ -50,12 +50,13 @@ def main(page: ft.Page):
         content=ft.ResponsiveRow(
             run_spacing=30,
             controls=[
-                # ft.Text(
-                #     value='Dados do cliente',
-                #     size=20,
-                #     color=ft.colors.BLACK,
-                #     weight=ft.FontWeight.BOLD,
-                # ),
+                ft.Text(
+                    value='Bem vindo ao simulador de crédito  do banco letshego',
+                    size=25,
+                    color=ft.colors.BLACK,
+                    weight=ft.FontWeight.BOLD,
+                    text_align=ft.TextAlign.CENTER,
+                ),
                 # ft.TextField(
                 #     col={'sm':12, 'lg':6},
                 #     label='Nome completo...',
@@ -104,15 +105,15 @@ def main(page: ft.Page):
                 # ),
 
                 ft.Text(
-                    value='Novo Credito',
+                    value='Novo crédito ',
                     size=20,
                     color=ft.colors.BLACK,
                     weight=ft.FontWeight.BOLD,
                 ),
                 salario_novo := ft.TextField(
                     col={'sm':12, 'lg':4},
-                    label='Salario Bruto...',
-                    helper_text = 'Salario que reflete na folha de salario...',
+                    label='Salário Bruto...',
+                    helper_text = 'Salário que reflete na folha de salário...',
                     helper_style = ft.TextStyle(italic=True, size=12, color=ft.colors.BLACK, weight=ft.FontWeight.BOLD),
                     label_style=ft.TextStyle(
                         weight=ft.FontWeight.BOLD, 
@@ -239,15 +240,15 @@ def main(page: ft.Page):
             run_spacing=30,
             controls=[
                 ft.Text(
-                    value='Reforco',
+                    value='Reforço ',
                     size=20,
                     color=ft.colors.BLACK,
                     weight=ft.FontWeight.BOLD,
                 ),
                 salario_bruto := ft.TextField(
                     col={'sm':12, 'lg':6},
-                    label='Salario Bruto',
-                    helper_text = 'Salario que reflete na folha de salario...',
+                    label='Salário Bruto',
+                    helper_text = 'Salário que reflete na folha de salário...',
                     helper_style = ft.TextStyle(italic=True, size=12, color=ft.colors.BLACK, weight=ft.FontWeight.BOLD),
                     label_style=ft.TextStyle(
                         weight=ft.FontWeight.BOLD, 
