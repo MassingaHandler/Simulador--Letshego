@@ -4,7 +4,7 @@ from flet.auth.providers import GoogleOAuthProvider
 #from flet.auth.providers import GitHubOAuthProvider
 #pip install cryptography
 from flet.security import encrypt, decrypt
-#from Index import Index 
+
 
 
 # Autenticar via GITHUB
@@ -28,6 +28,8 @@ SECRET = "FSDFSDFSFSDFSFSDFSFSDFSDFLKDFFNFDFDKFSKLDKNF"
 
 def main(page: ft.Page):
 
+    #Definicao de routas
+    
     provider = GoogleOAuthProvider(
         client_id = GOOGLE_CLIENT_ID,
         client_secret = GOOGLE_CLIENT_SECRET,
@@ -46,6 +48,8 @@ def main(page: ft.Page):
             token = page.auth.token.to_json()
             encrypted_token = encrypt(token, SECRET)
             page.client_storage.set("google_token", encrypted_token)
+            #page.go('Index')
+
             
             
         else:
@@ -60,6 +64,7 @@ def main(page: ft.Page):
 
 
     #if page.auth:
+    
         
 
     login = ft.Container(

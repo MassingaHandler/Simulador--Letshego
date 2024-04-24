@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "letshego-simulador",
+  "private_key_id": "e59548cd9761c4691f1a8dc29e668f451667b8b8",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCjzBLbn0b1zUFI\nUKTzWY4iOcz+mF7WkwMgVYlyegxVx6tUymJ/GCSx7Cmb0Ocb2RRHLEsVrICJo9DD\nMOM1zd3vwaemtbBpqUHqJVB4gdd1lcUO5x5dVxAjkY35s48G5UF6Sdw1oqoKZoCz\n8fbqrbFkB8L8/QrBTrP15ESSdCccCv/2/wGlWIwCUyKJ5Dhl1n1TOb+oOJ4GaTB0\n+xjEwjL+RMKlfQaagP9mANNMntsph6q3tttrQiZ1E+ff2YuAkudpfEhsJNZgdPDl\nIq7CbyN7q2PDmTgJTV5KNPNVmHX1bhZB0uEztlINsg5KSyfastwxvdW4hwDXPT8R\ne5obktDnAgMBAAECggEADPM+DHIn3Jg5UJvbpsfOVoNmYzytxt5BsYVBxDTFE+Ug\n9Se5KN5CTHTlB0Y5d3iuwz/Lwe9tDDTQ9RXA6QiZQvL3K9WSmJACv53qolR1sfzA\n40A/pNaU1pMT/AmHxd5LUn1TdUQimIbpJxD62iwYadW5Q2JIPudXkBnXmBKp4uwV\nThxM3XrcZ7/0ybDux34/QWviDiMCQuTgqhMQjKQPQZYkWSH5VGERLYE0ei5JBvpl\njlkuNqfJa3wvYDj0Gg75LPMwinHlRC1afbBHuIM+PrZfSpVGRDuQM7hLNYD5b7C3\nzPUxFqx+lA2OyOItsTcqkQCjhAvHY6tyOz2/XoLNAQKBgQDWIbFfEWFz3SKDUHRM\nlbi6bTPCtfwXAdFgonqT2SqVgST6ysjGUCqzvK2JkmOkf6CErG28IpNyOE0NtKqV\noNZtAyPGRtFVHiPvl9jk09qraeed8hZFJDEuVBp59dpT9B3s0pykamr+qet8l1dS\n3/suFMKEtvVv2uUM1ZPmk74V5wKBgQDD0ube47iNIm4U8++dIv6S0VCxIYPsxogS\nq/Qf2VsY5irgLGgXwnMScfJHdd1ICrGwZR6ney0IaahNF8ZsxS0wBaObViSbkH8R\ngVMbPZuFfEeKL9mdhSV0TSIcZqA4Wnv8ZETJDuEW1vXVosxgiIvEu6pWlHbj19EG\nWgtLEogNAQKBgQC0Y8ny1seMPhyXFy4CXpcyplBWlcz67NMgX4B4ERjovdUTWcXu\nGxb+N9LR9Hrw13u4iTIgrdgc/wUaqLqUNtytFVoL7RjoZe3MJ9XWYAr1INC4pHrS\nYHz2FHABknYNB7g2C+9eKzBbvXXejfhIntwRo/eCqkb1pigTudFRC+G0vQKBgQC0\nkfVx8mprOiRoDcgWDf7RQ1I1A8Kywx8WmJk0BSmLfDJtJIWX4yZZC9ltK7IwjCvt\njFEH/v03lLYs4I+IHQneDlUfGAAJsuR5L9eCdvzByifttNHl/rDa3YVmyvtS+5z4\nzzzeaWoFtZJavRPYsBCyCJq5240F7CxCvyVKxHvQAQKBgFHIw1t1+cbh3OzneomI\nvkaQoofcs+Noi5t29AIdUAe3xo/O9Vkpw88WMgvLU/4U1jCUucoJcEhp/XjG2O0q\nfqczyD/STJFvpNu02Cw7WcCBxBZlrnEWXWfDb+ul0h6kp2KklmmlOWax6ptfsA48\ndSif6bT5NjxH/cEVnNzOjCBR\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-lbce2@letshego-simulador.iam.gserviceaccount.com",
+  "client_id": "117255656685101556291",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-lbce2%40letshego-simulador.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

@@ -1,10 +1,31 @@
 import flet as ft
+from Views.auth import load_token, get_email, revoke_token
+# from Login import Login
 
+def SimuladorView(page):
 
-def main(page: ft.Page):
+    
+    
     page.bgcolor = "#fdfdf9"
     page.padding = 0
     page.scroll = ft.ScrollMode.HIDDEN
+
+
+    nome_usuario = get_email(load_token())
+    # #Definicao de routas
+    # def route_change(route):
+    #     page.views.clear()
+    #     page.views.append(
+    #         ft.View(
+    #             route="Login",
+    #             controls=[
+    #                 Login,
+    #             ]
+    #         )
+    #     )
+
+    # page.on_route_change = route_change
+    # page.update()
     
     
 
@@ -13,9 +34,13 @@ def main(page: ft.Page):
         height=80,
         border_radius=ft.border_radius.only(top_left=15, top_right=15),
         padding=ft.padding.only(left=20, right=20),
-        content=ft.Row(
+        content=ft.ResponsiveRow(
+            vertical_alignment=ft.CrossAxisAlignment.CENTER,
+            columns=12,
+            expand=False,
             controls=[
                 ft.Text(
+                    col=6,
                     value='Banco Letshego',
                     color=ft.colors.BLACK,
                     weight=ft.FontWeight.BOLD,
@@ -23,25 +48,31 @@ def main(page: ft.Page):
                 ),
 
                 ft.Row(
+                    col=6,
                     controls=[
                         ft.Text(
-                            value='Patricio',
+                            value=nome_usuario,
                             color=ft.colors.BLACK,
                             weight=ft.FontWeight.BOLD,
                             size=15,
                         ),
-                        ft.Icon(
-                            name=ft.icons.PERSON,
-                            color=ft.colors.BLACK,
+                        ft.IconButton(
+                            icon=ft.icons.LOGOUT,
+                            icon_color=ft.colors.RED,
+                            on_click=lambda _: (revoke_token(load_token()),page.go('/Login'))
                         ),
-                    ]
+                    ],
+                    alignment=ft.MainAxisAlignment.END,
                 )
 
             ],
-            alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
         ),
 
     )
+
+    # def logout(e):
+    #     (revoke_token(load_token)),
+    #     page.go('/Login')
     
 
     formulario_novo = ft.Container(
@@ -456,8 +487,7 @@ def main(page: ft.Page):
                                 ),
                                 ft.DataColumn(
                                     ft.Text("Volor Total do emprestimo"), 
-                                    numeric=False,
-                                   
+                                    numeric=False,  
                                 ),
                             ],
                             rows=[
@@ -487,13 +517,13 @@ def main(page: ft.Page):
                             ),
                         )
                     ],
-                    
+                    wrap=True,
                 )
             ],
         )
     )
 
-    layout = ft.Container(
+    return  ft.Container(
         expand=True,
         # bgcolor=ft.colors.GREY_300,
         padding=ft.padding.all(30),
@@ -512,4 +542,4 @@ def main(page: ft.Page):
     page.add(layout)
 
 
-ft.app(target=main)
+# ft.app(target=main)
