@@ -525,7 +525,7 @@ def SimuladorView(page):
         # bgcolor=ft.colors.GREY_300,
         padding=ft.padding.all(30),
         content=ft.Column(
-            scroll = ft.ScrollMode.ALWAYS,
+            scroll = ft.ScrollMode.HIDDEN,
             controls=[
                 header,
                 formulario_novo,
