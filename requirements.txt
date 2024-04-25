@@ -1,6 +1,5 @@
 flet
 pycryptodome
-pycrypto
 pyrebase4
 firebase
 firebase_admin
