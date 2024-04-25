@@ -481,11 +481,11 @@ def SimuladorView(page):
                                       
                                 ),
                                 ft.DataColumn(
-                                    ft.Text("Prestacao Mensal", max_lines=1,), 
+                                    ft.Text("Prestacao Mensal", max_lines=3,), 
                                     numeric=False,
                                 ),
                                 ft.DataColumn(
-                                    ft.Text("Volor Total do emprestimo", max_lines=1,), 
+                                    ft.Text("Volor Total do emprestimo", max_lines=3), 
                                     numeric=False,  
                                 ),
                             ],
@@ -508,7 +508,6 @@ def SimuladorView(page):
                                 weight=ft.FontWeight.BOLD,
                                 size=14,
                                 color=ft.colors.BLACK,
-                                
                             ),
                             vertical_lines=ft.BorderSide(
                                 width=0.50,
