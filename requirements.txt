@@ -2,3 +2,5 @@ flet
 pyrebase
 firebase
 firebase_admin
+pycrypto
+pycryptodome
