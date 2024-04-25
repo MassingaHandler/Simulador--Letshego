@@ -8,7 +8,7 @@ def SimuladorView(page):
     
     page.bgcolor = "#fdfdf9"
     page.padding = 0
-    page.scroll = ft.ScrollMode.HIDDEN
+    
 
 
     nome_usuario = get_email(load_token())
@@ -459,6 +459,7 @@ def SimuladorView(page):
         padding=ft.padding.only(top=20),
         
         content=ft.ResponsiveRow(
+
             controls=[
                 ft.Text(
                     value='Resultado',
@@ -468,25 +469,23 @@ def SimuladorView(page):
                 ),
                 
                 ft.Row(
-                    scroll = ft.ScrollMode.AUTO,
-                    
+                    scroll = ft.ScrollMode.ALWAYS,
                     controls=[
                         tabela_result := ft.DataTable(
                             ref = datatable,
                             width = (page.width if page.width else page.window_width) - 70,
-                            
                             columns=[
                                 ft.DataColumn(
-                                ft.Text("Meses"), 
+                                ft.Text("Meses", max_lines=1,), 
                                 numeric=False,
                                       
                                 ),
                                 ft.DataColumn(
-                                    ft.Text("Prestacao Mensal"), 
+                                    ft.Text("Prestacao Mensal", max_lines=1,), 
                                     numeric=False,
                                 ),
                                 ft.DataColumn(
-                                    ft.Text("Volor Total do emprestimo"), 
+                                    ft.Text("Volor Total do emprestimo", max_lines=1,), 
                                     numeric=False,  
                                 ),
                             ],
@@ -515,9 +514,8 @@ def SimuladorView(page):
                                 width=0.50,
                                 color=ft.colors.BLACK,
                             ),
-                        )
+                        )   
                     ],
-                    wrap=True,
                 )
             ],
         )
@@ -528,6 +526,7 @@ def SimuladorView(page):
         # bgcolor=ft.colors.GREY_300,
         padding=ft.padding.all(30),
         content=ft.Column(
+            scroll = ft.ScrollMode.ALWAYS,
             controls=[
                 header,
                 formulario_novo,
