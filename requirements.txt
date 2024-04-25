@@ -2,4 +2,3 @@ flet
 pyrebase
 firebase
 firebase_admin
-pickle
