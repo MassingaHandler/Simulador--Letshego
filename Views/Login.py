@@ -32,7 +32,7 @@ SECRET = "FSDFSDFSFSDFSFSDFSFSDFSDFLKDFFNFDFDKFSKLDKNF"
 
 def LoginView(page):
     
-
+    
     page.fonts = {
         "LatoLight": "/fontes/Lato-Light.ttf"
     }
@@ -226,18 +226,16 @@ def LoginView(page):
                             )
                         ),
 
-                        ft.Container(
-                            padding=ft.padding.only(top=80),
-                            content=ft.Row(
-                                controls=[
-                                    ft.Text(
-                                        value='Para ter acesso ao simulador entre em contacto com os ITs',
-                                        color='#4a4f4c',
-                                        size=15,
-                                        text_align=ft.TextAlign.CENTER,
-                                    ), 
-                                ]
-                            )  
+                        ft.Column(
+                            controls=[
+                                ft.Text(
+                                    value='Para ter acesso ao simulador entre em contacto com os ITs',
+                                    color='#4a4f4c',
+                                    size=15,
+                                    text_align=ft.TextAlign.JUSTIFY,
+                                ), 
+                            ],
+                            
                         )       
                     ],
                 )

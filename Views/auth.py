@@ -7,7 +7,9 @@ from firebase_admin import credentials
 import pickle
 
 
-cred = credentials.Certificate('letshego-simulador.json')
+# API = os.getenv("API")
+
+cred = credentials.Certificate("letshego-simulador.json")
 firebase_admin.initialize_app(cred)
 
 firebaseConfig = {

@@ -3,10 +3,10 @@ from Views.auth import load_token, get_email, revoke_token
 # from Login import Login
 
 def SimuladorView(page):
-
-    
-    
-    page.bgcolor = "#fdfdf9"
+    page.theme_mode = 'dark'
+    page.scroll = ft.ScrollMode.HIDDEN
+    page.window_min_width = 500
+    page.bgcolor = ft.colors.BLACK
     page.padding = 0
     
 
@@ -84,7 +84,7 @@ def SimuladorView(page):
                 ft.Text(
                     value='Bem vindo ao simulador de crédito  do banco letshego',
                     size=25,
-                    color=ft.colors.BLACK,
+                    color=ft.colors.WHITE,
                     weight=ft.FontWeight.BOLD,
                     text_align=ft.TextAlign.CENTER,
                 ),
@@ -135,70 +135,79 @@ def SimuladorView(page):
                 #         bgcolor=ft.colors.WHITE,
                 # ),
 
-                ft.Text(
-                    value='Novo crédito ',
-                    size=20,
-                    color=ft.colors.BLACK,
-                    weight=ft.FontWeight.BOLD,
+                 ft.Container  (
+                    bgcolor='#fbd400',
+                    height=30,
+                    border_radius=ft.border_radius.all(15),
+                    padding=ft.padding.only(left=20),
+                    content=ft.Text(
+                        value='Novo crédito ',
+                        size=15,
+                        color=ft.colors.BLACK,
+                        weight=ft.FontWeight.BOLD,
+                    )     
                 ),
                 salario_novo := ft.TextField(
                     col={'sm':12, 'lg':4},
                     label='Salário Bruto...',
                     helper_text = 'Salário que reflete na folha de salário...',
-                    helper_style = ft.TextStyle(italic=True, size=12, color=ft.colors.BLACK, weight=ft.FontWeight.BOLD),
+                    helper_style = ft.TextStyle(italic=True, size=12, color=ft.colors.WHITE, weight=ft.FontWeight.BOLD),
                     label_style=ft.TextStyle(
                         weight=ft.FontWeight.BOLD, 
-                        color=ft.colors.GREY_800
+                        color=ft.colors.WHITE
                     ),
                     text_style=ft.TextStyle(
                         weight=ft.FontWeight.BOLD, 
-                        color=ft.colors.GREY_800
+                        color=ft.colors.WHITE
                     ),
                     input_filter=ft.InputFilter(
                         allow=True,
                         regex_string=r"[0-9-.]"
                     ),
                     focused_border_color= '#fbd400',
+                    border_color= ft.colors.WHITE
                 ),
                 descontos_novo := ft.TextField(
                     col={'sm':12, 'lg':4},
                     label='Descontos...',
                     helper_text = 'Todos descontos do cliente (Ex: subsidios...)',
-                    helper_style = ft.TextStyle(italic=True, size=12, color=ft.colors.BLACK, weight=ft.FontWeight.BOLD),
+                    helper_style = ft.TextStyle(italic=True, size=12, color=ft.colors.WHITE, weight=ft.FontWeight.BOLD),
                     label_style=ft.TextStyle(
                         weight=ft.FontWeight.BOLD,
-                        color=ft.colors.GREY_800
+                        color=ft.colors.WHITE
                     ),
                     text_style=ft.TextStyle(
                         weight=ft.FontWeight.BOLD, 
-                        color=ft.colors.GREY_800
+                        color=ft.colors.WHITE
                     ),
                     input_filter=ft.InputFilter(
                         allow=True,
                         regex_string=r"[0-9-.]"
                     ),
                     focused_border_color= '#fbd400',
+                    border_color= ft.colors.WHITE
                 ),
                 periodo_emprestimo := ft.TextField(
                     col={'sm':12, 'lg':4},
                     label='Anos a Descontar...',
                     helper_text = 'Colocar anos em que o cliente gostaria de ser descontado...',
-                    helper_style = ft.TextStyle(italic=True, size=12, color=ft.colors.BLACK, weight=ft.FontWeight.BOLD),
+                    helper_style = ft.TextStyle(italic=True, size=12, color=ft.colors.WHITE, weight=ft.FontWeight.BOLD),
                     # error_text='Colocar so numeros',
-                    # error_style=ft.TextStyle(size = 15),
+                    # error_styles=ft.TextStyle(size = 15),
                     label_style=ft.TextStyle(
                         weight=ft.FontWeight.BOLD, 
-                        color=ft.colors.GREY_800
+                        color=ft.colors.WHITE
                     ),
                     text_style=ft.TextStyle(
                         weight=ft.FontWeight.BOLD, 
-                        color=ft.colors.GREY_800
+                        color=ft.colors.WHITE
                     ),
                     input_filter=ft.InputFilter(
                         allow=True,
                         regex_string=r"[0-9-.]"
                     ),
                     focused_border_color= '#fbd400',
+                    border_color= ft.colors.WHITE
                 ),
             ],
         )
@@ -253,8 +262,8 @@ def SimuladorView(page):
         controls=[
             ft.ElevatedButton(
                 text='Calcular',
-                bgcolor=ft.colors.BLACK,
-                color=ft.colors.WHITE,
+                bgcolor='#fbd400',
+                color=ft.colors.BLACK,
                 on_click=calcular_novo,
             )
         ]
@@ -270,84 +279,96 @@ def SimuladorView(page):
         content=ft.ResponsiveRow(
             run_spacing=30,
             controls=[
-                ft.Text(
-                    value='Reforço ',
-                    size=20,
-                    color=ft.colors.BLACK,
-                    weight=ft.FontWeight.BOLD,
+                ft.Container  (
+                    bgcolor='#fbd400',
+                    height = 30,
+                    border_radius=ft.border_radius.all(15),
+                    padding=ft.padding.only(left=20),
+                    content=ft.Text(
+                        value='Reforco',
+                        size=15,
+                        color=ft.colors.BLACK,
+                        weight=ft.FontWeight.BOLD,
+                    )
+                    
                 ),
                 salario_bruto := ft.TextField(
                     col={'sm':12, 'lg':6},
                     label='Salário Bruto',
                     helper_text = 'Salário que reflete na folha de salário...',
-                    helper_style = ft.TextStyle(italic=True, size=12, color=ft.colors.BLACK, weight=ft.FontWeight.BOLD),
+                    helper_style = ft.TextStyle(italic=True, size=12, color=ft.colors.WHITE, weight=ft.FontWeight.BOLD),
                     label_style=ft.TextStyle(
                         weight=ft.FontWeight.BOLD, 
-                        color=ft.colors.GREY_800
+                        color=ft.colors.WHITE
                     ),
                     text_style=ft.TextStyle(
                         weight=ft.FontWeight.BOLD, 
-                        color=ft.colors.GREY_800
+                        color=ft.colors.WHITE
                     ),
                     input_filter=ft.InputFilter(
                         allow=True,
                         regex_string=r"[0-9-.]"
                     ),
                     focused_border_color= '#fbd400',
+                    border_color= ft.colors.WHITE
                 ),
                 vl_dividas_descontos := ft.TextField(
                     col={'sm':12, 'lg':6},
                     label='Descontos',
                     helper_text = 'Somar todos descontos das dividas que tem em outros bancos inclusive letshego...',
-                    helper_style = ft.TextStyle(italic=True, size=11, color=ft.colors.BLACK, weight=ft.FontWeight.BOLD),
+                    helper_style = ft.TextStyle(italic=True, size=11, color=ft.colors.WHITE, weight=ft.FontWeight.BOLD),
                     label_style=ft.TextStyle(
                         weight=ft.FontWeight.BOLD, 
-                        color=ft.colors.GREY_800
+                        color=ft.colors.WHITE
                     ),
                     text_style=ft.TextStyle(
                         weight=ft.FontWeight.BOLD, 
-                        color=ft.colors.GREY_800
+                        color=ft.colors.WHITE
                     ),
                     input_filter=ft.InputFilter(
                         allow=True,
                         regex_string=r"[0-9-.]"
                     ),
                     focused_border_color= '#fbd400',
+                    border_color= ft.colors.WHITE
                 ),
                 vl_desejado := ft.TextField(
                     col={'sm':12, 'lg':6},
                     label='Valor do Emprestimo....',
                     helper_text = 'Valor total que o cliente gostaria de ter...',
-                    helper_style = ft.TextStyle(italic=True, size=12, color=ft.colors.BLACK, weight=ft.FontWeight.BOLD),
+                    helper_style = ft.TextStyle(italic=True, size=12, color=ft.colors.WHITE, weight=ft.FontWeight.BOLD),
                     label_style=ft.TextStyle(
                         weight=ft.FontWeight.BOLD, 
-                        color=ft.colors.GREY_800
+                        color=ft.colors.WHITE
                     ),
                     text_style=ft.TextStyle(
                         weight=ft.FontWeight.BOLD, 
-                        color=ft.colors.GREY_800
+                        color=ft.colors.WHITE
                     ),
                     input_filter=ft.InputFilter(
                         allow=True,
                         regex_string=r"[0-9-.]"
                     ),
                     focused_border_color= '#fbd400',
+                    border_color= ft.colors.WHITE
+
                 ),
                 tempo_pagamento := ft.TextField(
                     col={'sm':12, 'lg':6},
                     label='Anos a ser Descontado',
                     helper_text = 'Colocar anos em que o cliente gostaria de ser descontado...',
-                    helper_style = ft.TextStyle(italic=True, size=12, color=ft.colors.BLACK, weight=ft.FontWeight.BOLD),
+                    helper_style = ft.TextStyle(italic=True, size=12, color=ft.colors.WHITE, weight=ft.FontWeight.BOLD),
                     label_style=ft.TextStyle(
                         weight=ft.FontWeight.BOLD, 
-                        color=ft.colors.GREY_800
+                        color=ft.colors.WHITE
                     ),
                     text_style=ft.TextStyle(
                         weight=ft.FontWeight.BOLD, 
-                        color=ft.colors.GREY_800
+                        color=ft.colors.WHITE
                     ),
                     input_filter=ft.NumbersOnlyInputFilter(),
                     focused_border_color= '#fbd400',
+                    border_color= ft.colors.WHITE
                 )
             ],
         )
@@ -428,8 +449,8 @@ def SimuladorView(page):
         controls=[
             ft.ElevatedButton(
                 text='Calcular',
-                bgcolor=ft.colors.BLACK,
-                color=ft.colors.WHITE,
+                bgcolor='#fbd400',
+                color=ft.colors.BLACK,
                 on_click=calcular_reforco,
             )
         ]
@@ -464,7 +485,7 @@ def SimuladorView(page):
                 ft.Text(
                     value='Resultado',
                     size=20,
-                    color=ft.colors.BLACK,
+                    color=ft.colors.WHITE,
                     weight=ft.FontWeight.BOLD,
                 ),
                 
@@ -481,11 +502,11 @@ def SimuladorView(page):
                                       
                                 ),
                                 ft.DataColumn(
-                                    ft.Text("Prestacao Mensal", max_lines=3,), 
+                                    ft.Text("Prestacao Mensal", max_lines=1,), 
                                     numeric=False,
                                 ),
                                 ft.DataColumn(
-                                    ft.Text("Volor Total do emprestimo", max_lines=3), 
+                                    ft.Text("Volor Total do emprestimo", max_lines=1), 
                                     numeric=False,  
                                 ),
                             ],
@@ -497,10 +518,10 @@ def SimuladorView(page):
                             #     bottom_left=15, 
                             #     bottom_right=15,
                             # ),
-                            border=ft.border.all(1),
+                            border=ft.border.all(1, 'white'),
                             #bgcolor=ft.colors.GREY_300,
                             data_text_style=ft.TextStyle(
-                                color=ft.colors.BLACK,
+                                color=ft.colors.WHITE,
                                 weight=ft.FontWeight.BOLD,
                             ),
                             heading_row_color='#fbd400',
@@ -511,8 +532,13 @@ def SimuladorView(page):
                             ),
                             vertical_lines=ft.BorderSide(
                                 width=0.50,
-                                color=ft.colors.BLACK,
+                                color=ft.colors.WHITE,
                             ),
+                            horizontal_lines=ft.BorderSide(
+                                width=0.50,
+                                color=ft.colors.WHITE,
+                            ),
+                            column_spacing=10,
                         )   
                     ],
                 )
@@ -522,7 +548,7 @@ def SimuladorView(page):
 
     return  ft.Container(
         expand=True,
-        # bgcolor=ft.colors.GREY_300,
+        # bgcolor=ft.colors.BLACK,
         padding=ft.padding.all(30),
         content=ft.Column(
             scroll = ft.ScrollMode.HIDDEN,
