@@ -75,19 +75,19 @@ def SimuladorView(page):
     #     page.go('/Login')
     
 
-    formulario_novo = ft.Container(
-        padding=ft.padding.only(top=30),
-        #border=ft.border.only(top=1, bottom=1),
-        content=ft.ResponsiveRow(
-            run_spacing=30,
-            controls=[
-                ft.Text(
-                    value='Bem vindo ao simulador de crédito  do banco letshego',
-                    size=25,
-                    color=ft.colors.WHITE,
-                    weight=ft.FontWeight.BOLD,
-                    text_align=ft.TextAlign.CENTER,
-                ),
+    # formulario_novo = ft.Container(
+    #     padding=ft.padding.only(top=30),
+    #     #border=ft.border.only(top=1, bottom=1),
+    #     content=ft.ResponsiveRow(
+    #         run_spacing=30,
+    #         controls=[
+    #             ft.Text(
+    #                 value='Bem vindo ao simulador de crédito  do banco letshego',
+    #                 size=25,
+    #                 color=ft.colors.WHITE,
+    #                 weight=ft.FontWeight.BOLD,
+    #                 text_align=ft.TextAlign.CENTER,
+                
                 # ft.TextField(
                 #     col={'sm':12, 'lg':6},
                 #     label='Nome completo...',
@@ -135,150 +135,161 @@ def SimuladorView(page):
                 #         bgcolor=ft.colors.WHITE,
                 # ),
 
-                 ft.Container  (
-                    bgcolor='#fbd400',
-                    height=30,
-                    border_radius=ft.border_radius.all(15),
-                    padding=ft.padding.only(left=20),
-                    content=ft.Text(
-                        value='Novo crédito ',
-                        size=15,
-                        color=ft.colors.BLACK,
-                        weight=ft.FontWeight.BOLD,
-                    )     
-                ),
-                salario_novo := ft.TextField(
-                    col={'sm':12, 'lg':4},
-                    label='Salário Bruto...',
-                    helper_text = 'Salário que reflete na folha de salário...',
-                    helper_style = ft.TextStyle(italic=True, size=12, color=ft.colors.WHITE, weight=ft.FontWeight.BOLD),
-                    label_style=ft.TextStyle(
-                        weight=ft.FontWeight.BOLD, 
-                        color=ft.colors.WHITE
-                    ),
-                    text_style=ft.TextStyle(
-                        weight=ft.FontWeight.BOLD, 
-                        color=ft.colors.WHITE
-                    ),
-                    input_filter=ft.InputFilter(
-                        allow=True,
-                        regex_string=r"[0-9-.]"
-                    ),
-                    focused_border_color= '#fbd400',
-                    border_color= ft.colors.WHITE
-                ),
-                descontos_novo := ft.TextField(
-                    col={'sm':12, 'lg':4},
-                    label='Descontos...',
-                    helper_text = 'Todos descontos do cliente (Ex: subsidios...)',
-                    helper_style = ft.TextStyle(italic=True, size=12, color=ft.colors.WHITE, weight=ft.FontWeight.BOLD),
-                    label_style=ft.TextStyle(
-                        weight=ft.FontWeight.BOLD,
-                        color=ft.colors.WHITE
-                    ),
-                    text_style=ft.TextStyle(
-                        weight=ft.FontWeight.BOLD, 
-                        color=ft.colors.WHITE
-                    ),
-                    input_filter=ft.InputFilter(
-                        allow=True,
-                        regex_string=r"[0-9-.]"
-                    ),
-                    focused_border_color= '#fbd400',
-                    border_color= ft.colors.WHITE
-                ),
-                periodo_emprestimo := ft.TextField(
-                    col={'sm':12, 'lg':4},
-                    label='Anos a Descontar...',
-                    helper_text = 'Colocar anos em que o cliente gostaria de ser descontado...',
-                    helper_style = ft.TextStyle(italic=True, size=12, color=ft.colors.WHITE, weight=ft.FontWeight.BOLD),
-                    # error_text='Colocar so numeros',
-                    # error_styles=ft.TextStyle(size = 15),
-                    label_style=ft.TextStyle(
-                        weight=ft.FontWeight.BOLD, 
-                        color=ft.colors.WHITE
-                    ),
-                    text_style=ft.TextStyle(
-                        weight=ft.FontWeight.BOLD, 
-                        color=ft.colors.WHITE
-                    ),
-                    input_filter=ft.InputFilter(
-                        allow=True,
-                        regex_string=r"[0-9-.]"
-                    ),
-                    focused_border_color= '#fbd400',
-                    border_color= ft.colors.WHITE
-                ),
-            ],
-        )
-    )
-    ft.Divider(height=6, color=ft.colors.BLACK),
+    #              ft.Container  (
+    #                 bgcolor='#fbd400',
+    #                 height=30,
+    #                 border_radius=ft.border_radius.all(15),
+    #                 padding=ft.padding.only(left=20),
+    #                 content=ft.Text(
+    #                     value='Novo crédito ',
+    #                     size=15,
+    #                     color=ft.colors.BLACK,
+    #                     weight=ft.FontWeight.BOLD,
+    #                 )     
+    #             ),
+    #             salario_novo := ft.TextField(
+    #                 col={'sm':12, 'lg':4},
+    #                 label='Salário Bruto...',
+    #                 helper_text = 'Salário que reflete na folha de salário...',
+    #                 helper_style = ft.TextStyle(italic=True, size=12, color=ft.colors.WHITE, weight=ft.FontWeight.BOLD),
+    #                 label_style=ft.TextStyle(
+    #                     weight=ft.FontWeight.BOLD, 
+    #                     color=ft.colors.WHITE
+    #                 ),
+    #                 text_style=ft.TextStyle(
+    #                     weight=ft.FontWeight.BOLD, 
+    #                     color=ft.colors.WHITE
+    #                 ),
+    #                 input_filter=ft.InputFilter(
+    #                     allow=True,
+    #                     regex_string=r"[0-9-.]"
+    #                 ),
+    #                 focused_border_color= '#fbd400',
+    #                 border_color= ft.colors.WHITE
+    #             ),
+    #             descontos_novo := ft.TextField(
+    #                 col={'sm':12, 'lg':4},
+    #                 label='Descontos...',
+    #                 helper_text = 'Todos descontos do cliente (Ex: subsidios...)',
+    #                 helper_style = ft.TextStyle(italic=True, size=12, color=ft.colors.WHITE, weight=ft.FontWeight.BOLD),
+    #                 label_style=ft.TextStyle(
+    #                     weight=ft.FontWeight.BOLD,
+    #                     color=ft.colors.WHITE
+    #                 ),
+    #                 text_style=ft.TextStyle(
+    #                     weight=ft.FontWeight.BOLD, 
+    #                     color=ft.colors.WHITE
+    #                 ),
+    #                 input_filter=ft.InputFilter(
+    #                     allow=True,
+    #                     regex_string=r"[0-9-.]"
+    #                 ),
+    #                 focused_border_color= '#fbd400',
+    #                 border_color= ft.colors.WHITE
+    #             ),
+    #             periodo_emprestimo := ft.TextField(
+    #                 col={'sm':12, 'lg':4},
+    #                 label='Anos a Descontar...',
+    #                 helper_text = 'Colocar anos em que o cliente gostaria de ser descontado...',
+    #                 helper_style = ft.TextStyle(italic=True, size=12, color=ft.colors.WHITE, weight=ft.FontWeight.BOLD),
+    #                 # error_text='Colocar so numeros',
+    #                 # error_styles=ft.TextStyle(size = 15),
+    #                 label_style=ft.TextStyle(
+    #                     weight=ft.FontWeight.BOLD, 
+    #                     color=ft.colors.WHITE
+    #                 ),
+    #                 text_style=ft.TextStyle(
+    #                     weight=ft.FontWeight.BOLD, 
+    #                     color=ft.colors.WHITE
+    #                 ),
+    #                 input_filter=ft.InputFilter(
+    #                     allow=True,
+    #                     regex_string=r"[0-9-.]"
+    #                 ),
+    #                 focused_border_color= '#fbd400',
+    #                 border_color= ft.colors.WHITE
+    #             ),
+    #         ],
+    #     )
+    # )
+    # ft.Divider(height=6, color=ft.colors.BLACK),
 
     #Calcular novo credito
 
-    def calcular_novo(e):
-        import math
+    # def calcular_novo(e):
+    #     import math
 
-        salario_liquido = salario_novo.value
-        desconto_cal = descontos_novo.value
-        periodo_emprestimo_real = periodo_emprestimo.value
+    #     salario_liquido = salario_novo.value
+    #     desconto_cal = descontos_novo.value
+    #     periodo_emprestimo_real = periodo_emprestimo.value
+    #     if salario_liquido <= 20000:
+    #         valor_emprestimo * 0.40
+    #     else:
+    #         valor_emprestimo * 0.50
         
-        salario_real = float(salario_liquido) / 2
-        capacidade_desconto = float(salario_real) - float(desconto_cal)
-        taxa_anual = 0.32
-        taxa_mensal = taxa_anual / 12
+    #     salario_real = float(salario_liquido) / 2
+    #     capacidade_desconto = float(salario_real) - float(desconto_cal)
+    #     taxa_anual = 0.32
+    #     taxa_mensal = taxa_anual / 12
         
-        #periodo_emprestimo_real = periodo_emprestimo  # em anos
+    #     #periodo_emprestimo_real = periodo_emprestimo  # em anos
 
-        numero_pagamentos = float(periodo_emprestimo_real) * 12
-        valor_emprestimo = (float(capacidade_desconto) * (1 - (1 + taxa_mensal)** - float(numero_pagamentos))) / (taxa_mensal)
-        #emprestimo_maximo_formatado = '{:,.2f}'.format(emprestimo_maximo)
+    #     numero_pagamentos = float(periodo_emprestimo_real) * 12
+    #     valor_emprestimo = (float(capacidade_desconto) * (1 - (1 + taxa_mensal)** - float(numero_pagamentos))) / (taxa_mensal)
+    #     #emprestimo_maximo_formatado = '{:,.2f}'.format(emprestimo_maximo)
 
-        tabela_result.rows.append(
-                ft.DataRow(
-                    cells=[
-                        ft.DataCell(
-                            content=ft.Text(value = f'{numero_pagamentos:.0f} Meses'),
-                        ),
-                        ft.DataCell(
-                            content=ft.Text(value = f'{capacidade_desconto:,.2f} MZN')
-                        ),
-                        ft.DataCell(
-                            content=ft.Text(value = f'{valor_emprestimo:,.2f} MZN'),
-                        ),
-                    ],
-                    selected=False,
-                    on_select_changed=toggle_select,
-                    data=0,
+    #     tabela_result.rows.append(
+    #             ft.DataRow(
+    #                 cells=[
+    #                     ft.DataCell(
+    #                         content=ft.Text(value = f'{numero_pagamentos:.0f} Meses'),
+    #                     ),
+    #                     ft.DataCell(
+    #                         content=ft.Text(value = f'{capacidade_desconto:,.2f} MZN')
+    #                     ),
+    #                     ft.DataCell(
+    #                         content=ft.Text(value = f'{valor_emprestimo:,.2f} MZN'),
+    #                     ),
+    #                 ],
+    #                 selected=False,
+    #                 on_select_changed=toggle_select,
+    #                 data=0,
                     
-                ),    
-            )
+    #             ),    
+    #         )
         
-        tabela_result.update()
+    #     tabela_result.update()
             
 
-    btn_novo = ft.Row(
-        alignment=ft.MainAxisAlignment.START,
-        controls=[
-            ft.ElevatedButton(
-                text='Calcular',
-                bgcolor='#fbd400',
-                color=ft.colors.BLACK,
-                on_click=calcular_novo,
-            )
-        ]
-    )
+    # btn_novo = ft.Row(
+    #     alignment=ft.MainAxisAlignment.START,
+    #     controls=[
+    #         ft.ElevatedButton(
+    #             text='Calcular',
+    #             bgcolor='#fbd400',
+    #             color=ft.colors.BLACK,
+    #             on_click=calcular_novo,
+    #         )
+    #     ]
+    # )
 
-    def toggle_select(e):
-        e.control.selected = not e.control.selected
-        print(f'Selecionando a linha de indice{e.control.data}')
-        e.control.update()
+    # def toggle_select(e):
+    #     e.control.selected = not e.control.selected
+    #     print(f'Selecionando a linha de indice{e.control.data}')
+    #     e.control.update()
 
     formulario_reforco = ft.Container(
         padding=ft.padding.only(top=30),
         content=ft.ResponsiveRow(
             run_spacing=30,
             controls=[
+                ft.Text(
+                    value='Bem vindo ao simulador de crédito  do banco letshego',
+                    size=25,
+                    color=ft.colors.WHITE,
+                    weight=ft.FontWeight.BOLD,
+                    text_align=ft.TextAlign.CENTER,
+                ),
                 ft.Container  (
                     bgcolor='#fbd400',
                     height = 30,
@@ -387,10 +398,16 @@ def SimuladorView(page):
         valor_sem_divida = float(salario) / 2
 
         valor_real = float(valor_sem_divida) - float(valor_total)
-        meses = math.ceil(int(anos_a_pagar) * 12)
-        juros = 1.032**meses
+        meses = float(anos_a_pagar)
+        juros = (1+0.345/12)**meses
 
-        prestacao_mensal = (float(valor_desejado) * float(juros) * float(0.032)) / (float(juros) - 1)
+
+        if meses <= 12:
+            prestacao_mensal = (float(valor_desejado) * (float(juros) * float(0.345) / 12)) / (float(juros) - 1) + float(valor_desejado) * 0.0045
+        elif meses >12 and meses <= 36:
+            prestacao_mensal = (float(valor_desejado) * (float(juros) * float(0.345) / 12)) / (float(juros) - 1) + float(valor_desejado) * 0.0033
+        elif meses > 36:
+            prestacao_mensal = (float(valor_desejado) * (float(juros) * float(0.345) / 12)) / (float(juros) - 1) + float(valor_desejado) * 0.0028
 
         
         # juros_mensal = math.ceil(int(valor_desejado) * 0.02836)
@@ -554,8 +571,8 @@ def SimuladorView(page):
             scroll = ft.ScrollMode.HIDDEN,
             controls=[
                 header,
-                formulario_novo,
-                btn_novo,
+                # formulario_novo,
+                # btn_novo,
                 formulario_reforco,
                 btn_reforco,
                 resultado,

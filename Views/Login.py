@@ -221,7 +221,7 @@ def LoginView(page):
                                         '': '#312f83',
                                     },
                                 ),
-                                # on_click=lambda _: page.login(provider=provider),
+                                # on_click=lambda _: page.go('/index')
                                 on_click=login
                             )
                         ),

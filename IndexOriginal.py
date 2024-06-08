@@ -202,7 +202,7 @@ def main(page: ft.Page):
         
         salario_real = float(salario_liquido) / 2
         capacidade_desconto = float(salario_real) - float(desconto_cal)
-        taxa_anual = 0.32
+        taxa_anual = 0.345
         taxa_mensal = taxa_anual / 12
         
         #periodo_emprestimo_real = periodo_emprestimo  # em anos
@@ -349,13 +349,20 @@ def main(page: ft.Page):
         valor_desejado = vl_desejado.value
         anos_a_pagar = tempo_pagamento.value
         #calcular o valor total depois das dividas
-        valor_sem_divida = float(salario) / 2
+        valor_sem_divida = float(salario) 
 
         valor_real = float(valor_sem_divida) - float(valor_total)
-        meses = math.ceil(int(anos_a_pagar) * 12)
-        juros = 1.032**meses
+        # meses = math.ceil(int(anos_a_pagar) * 12)
+        meses = float(anos_a_pagar)
+        juros = (1+0.345/12)**meses
 
-        prestacao_mensal = (float(valor_desejado) * float(juros) * float(0.032)) / (float(juros) - 1)
+
+        if meses <= 12:
+            prestacao_mensal = (float(valor_desejado) * (float(juros) * float(0.345) / 12)) / (float(juros) - 1) + float(valor_desejado) * 0.0045
+        elif meses >12 and meses <= 36:
+            prestacao_mensal = (float(valor_desejado) * (float(juros) * float(0.345) / 12)) / (float(juros) - 1) + float(valor_desejado) * 0.0033
+        elif meses > 36:
+            prestacao_mensal = (float(valor_desejado) * (float(juros) * float(0.345) / 12)) / (float(juros) - 1) + float(valor_desejado) * 0.0028
 
         
         # juros_mensal = math.ceil(int(valor_desejado) * 0.02836)
