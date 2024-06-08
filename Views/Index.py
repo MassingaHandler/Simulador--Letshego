@@ -366,8 +366,8 @@ def SimuladorView(page):
                 ),
                 tempo_pagamento := ft.TextField(
                     col={'sm':12, 'lg':6},
-                    label='Anos a ser Descontado',
-                    helper_text = 'Colocar anos em que o cliente gostaria de ser descontado...',
+                    label='Meses a ser Descontado',
+                    helper_text = 'Colocar meses em que o cliente gostaria de ser descontado...',
                     helper_style = ft.TextStyle(italic=True, size=12, color=ft.colors.WHITE, weight=ft.FontWeight.BOLD),
                     label_style=ft.TextStyle(
                         weight=ft.FontWeight.BOLD, 
@@ -427,7 +427,7 @@ def SimuladorView(page):
                             content=ft.Text(value = f' {prestacao_mensal:,.2f} MZN')
                         ),
                         ft.DataCell(
-                            content=ft.Text(value = f' {valor_desejado} MZN'),
+                            content=ft.Text(value = f' {int(valor_desejado):,.2f} MZN'),
                         ),
                     ],
                     selected=False,
