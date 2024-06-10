@@ -112,8 +112,8 @@ def LoginView(page):
         controls=[
             ft.Container(
                 col = {"md":3},
-                width=500,
-                height=600,
+                width=350,
+                height=500,
                 bgcolor=ft.colors.WHITE,
                 alignment=ft.alignment.center,
                 border_radius =ft.border_radius.all(25),

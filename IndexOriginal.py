@@ -280,6 +280,8 @@ def main(page: ft.Page):
                         regex_string=r"[0-9-.]"
                     ),
                     focused_border_color= '#fbd400',
+                    bgcolor = ft.colors.WHITE,
+                    border_color = ft.colors.AMBER
                 ),
                 vl_dividas_descontos := ft.TextField(
                     col={'sm':12, 'lg':6},
@@ -299,6 +301,8 @@ def main(page: ft.Page):
                         regex_string=r"[0-9-.]"
                     ),
                     focused_border_color= '#fbd400',
+                    bgcolor = ft.colors.WHITE,
+                    border_color = ft.colors.AMBER
                 ),
                 vl_desejado := ft.TextField(
                     col={'sm':12, 'lg':6},
@@ -318,6 +322,8 @@ def main(page: ft.Page):
                         regex_string=r"[0-9-.]"
                     ),
                     focused_border_color= '#fbd400',
+                    bgcolor = ft.colors.WHITE,
+                    border_color = ft.colors.AMBER
                 ),
                 tempo_pagamento := ft.TextField(
                     col={'sm':12, 'lg':6},
@@ -334,6 +340,8 @@ def main(page: ft.Page):
                     ),
                     input_filter=ft.NumbersOnlyInputFilter(),
                     focused_border_color= '#fbd400',
+                    bgcolor = ft.colors.WHITE,
+                    border_color = ft.colors.AMBER
                 )
             ],
         )
