@@ -69,16 +69,10 @@ def SimuladorView(page):
         ),
 
     )
-    def clear(e):
-        tabela_result.rows.clear()
-        
-        page.update()
 
     def logout(e):
-        (revoke_token(load_token)),
-        page.go('/Login')
+        (revoke_token(load_token)),page.go('/Login')
     
-
     formulario_novo = ft.Container(
         padding=ft.padding.only(top=30),
         #border=ft.border.only(top=1, bottom=1),
@@ -92,6 +86,53 @@ def SimuladorView(page):
                     weight=ft.FontWeight.BOLD,
                     text_align=ft.TextAlign.CENTER,
                 ),
+                # ft.TextField(
+                #     col={'sm':12, 'lg':6},
+                #     label='Nome completo...',
+                #     label_style=ft.TextStyle(
+                #         weight=ft.FontWeight.BOLD,
+                #         color=ft.colors.GREY_800
+                #     ),
+                #     text_style=ft.TextStyle(
+                #         weight=ft.FontWeight.BOLD,
+                #         color=ft.colors.GREY_800
+                #     ),
+                #     focused_border_color= '#fbd400',
+                # ),
+                # ft.TextField(
+                #     col={'sm':12, 'lg':6},
+                #     label='Contacto...',
+                #     label_style=ft.TextStyle(
+                #         weight=ft.FontWeight.BOLD, 
+                #         color=ft.colors.GREY_800
+                #     ),
+                #     text_style=ft.TextStyle(
+                #         weight=ft.FontWeight.BOLD, 
+                #         color=ft.colors.GREY_800
+                #     ),
+                #     focused_border_color= '#fbd400',
+                # ),
+
+                # ft.Dropdown(
+                #     col=12,
+                #     label='Selecione a entidade',
+                #     options=[
+                #         ft.dropdown.Option(key=1, text='Marinha de Guerra'),
+                #         ft.dropdown.Option(text='Exercito'),
+                #         ft.dropdown.Option(text='MINT'),
+                #         ft.dropdown.Option(text='Reservistas'),
+                #         ft.dropdown.Option(text='Interior'),
+                #         ft.dropdown.Option(text='Pensionista'),
+                #         ft.dropdown.Option(text='Forcas areas'),
+                #         ft.dropdown.Option(text='ISDEF'),
+                #     ],
+                #     label_style=ft.TextStyle(
+                #         weight=ft.FontWeight.BOLD, color=ft.colors.BLACK, ),
+                #     text_style=ft.TextStyle(
+                #         weight=ft.FontWeight.BOLD, color=ft.colors.BLACK, bgcolor=ft.colors.WHITE),
+                #         bgcolor=ft.colors.WHITE,
+                # ),
+
                  ft.Container  (
                     bgcolor='#fbd400',
                     height=30,
@@ -166,6 +207,32 @@ def SimuladorView(page):
                     focused_border_color= '#fbd400',
                     border_color= ft.colors.WHITE
                 ),
+                # percentual := ft.Dropdown(
+                #     col={'sm':12, 'lg':3},
+                #     label='Selecione a parcentagem do salario',
+                #     options=[                      
+                #         ft.dropdown.Option(text='0.40'),
+                #         ft.dropdown.Option(text='0.50'),
+                #     ],
+                #     helper_text = 'Se quiser usar 40%  ou 50% do salari',
+                #     helper_style = ft.TextStyle(italic=True, size=12, color=ft.colors.WHITE, weight=ft.FontWeight.BOLD),
+                #     # error_text='Colocar so numeros',
+                #     # error_styles=ft.TextStyle(size = 15),
+                #     label_style=ft.TextStyle(
+                #         weight=ft.FontWeight.BOLD, 
+                #         color=ft.colors.WHITE
+                #     ),
+                #     text_style=ft.TextStyle(
+                #         weight=ft.FontWeight.BOLD, 
+                #         color=ft.colors.WHITE
+                #     ),
+                #     # input_filter=ft.InputFilter(
+                #     #     allow=True,
+                #     #     regex_string=r"[0-9-.]"
+                #     # ),
+                #     focused_border_color= '#fbd400',
+                #     border_color= ft.colors.WHITE
+                # ),
             ],
         )
     )
@@ -224,12 +291,8 @@ def SimuladorView(page):
                 
             ),    
         )
-        tabela_result.update()
-       
     
-        
-
-        
+        tabela_result.update()
 
             
 
@@ -353,6 +416,32 @@ def SimuladorView(page):
                     focused_border_color= '#fbd400',
                     border_color= ft.colors.WHITE
                 ),
+                # percentual_es := ft.Dropdown(
+                #     col={'sm':12, 'lg':4},
+                #     label='Selecione a parcentagem do salario',
+                #     options=[                      
+                #         ft.dropdown.Option(text='0.40'),
+                #         ft.dropdown.Option(text='0.50'),
+                #     ],
+                #     helper_text = 'Se quiser usar 40%  ou 50% do salari',
+                #     helper_style = ft.TextStyle(italic=True, size=12, color=ft.colors.WHITE, weight=ft.FontWeight.BOLD),
+                #     # error_text='Colocar so numeros',
+                #     # error_styles=ft.TextStyle(size = 15),
+                #     label_style=ft.TextStyle(
+                #         weight=ft.FontWeight.BOLD, 
+                #         color=ft.colors.WHITE
+                #     ),
+                #     text_style=ft.TextStyle(
+                #         weight=ft.FontWeight.BOLD, 
+                #         color=ft.colors.WHITE
+                #     ),
+                #     # input_filter=ft.InputFilter(
+                #     #     allow=True,
+                #     #     regex_string=r"[0-9-.]"
+                #     # ),
+                #     focused_border_color= '#fbd400',
+                #     border_color= ft.colors.WHITE
+                # ),
             ],
         )
     )
@@ -377,7 +466,7 @@ def SimuladorView(page):
             salario_real = salario * 0.70
        
         
-        salario_liquido = salario_real - descontos
+        salario_liquido = salario - descontos
 
         capacidadeMaxima = salario_liquido * (1 - (1 + taxa_juro)**(-periodo_mensal))/taxa_juro
 
@@ -395,18 +484,19 @@ def SimuladorView(page):
         
         prestacao = (financiamento_maximo * taxa_juro)/(1 - (1 + taxa_juro) ** (-periodo_mensal))
         
-        if  capacidadeMaxima < financiamento_maximo:
+        if capacidadeMaxima  < financiamento_maximo:
+            
             tabela_result.rows.append(
                 ft.DataRow(
                     cells=[
                         ft.DataCell(
-                            content=ft.Text(value = 'Sem Capacidade'),
+                            content=ft.Text(value = 'Sem capacidade'),
                         ),
                         ft.DataCell(
-                            content=ft.Text(value = 'Sem Capacidade')
+                            content=ft.Text(value = 'Sem capacidade')
                         ),
                         ft.DataCell(
-                            content=ft.Text(value = 'Sem Capacidade'),
+                            content=ft.Text(value = 'Sem capacidade'),
                         ),
                     ],
                     selected=False,
@@ -416,7 +506,9 @@ def SimuladorView(page):
             )
 
             tabela_result.update()
+        
         else:
+            valor_a_receber = financiamento_maximo - seguro
             tabela_result.rows.append(
                 ft.DataRow(
                     cells=[
@@ -435,13 +527,8 @@ def SimuladorView(page):
                     data=0,
                 ),
             )
+
             tabela_result.update()
-           
-
-            
-
-            
-           
 
 
 
@@ -547,14 +634,6 @@ def SimuladorView(page):
         )
     )
 
-    floating_action_button = ft.FloatingActionButton(
-        icon=ft.icons.DELETE_FOREVER,
-        bgcolor=ft.colors.AMBER,
-        mouse_cursor=ft.MouseCursor.CLICK,
-        foreground_color= ft.colors.BLACK,
-        on_click=clear
-    )
-
     return  ft.Container(
         expand=True,
         # bgcolor=ft.colors.BLACK,
@@ -568,7 +647,6 @@ def SimuladorView(page):
                 formulario_reforco,
                 btn_reforco,
                 resultado,
-                floating_action_button,
             ]
         )
     )
