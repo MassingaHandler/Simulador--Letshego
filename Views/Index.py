@@ -173,49 +173,148 @@ def SimuladorView(page):
 
     #Calcular novo credito
 
-    def capacidade_maxima(e):
-        salario_liquido = float(salario_novo.value)
-        desconto_cal = float(descontos_novo.value)
-        periodo_mensal = int(periodo_emprestimo.value)
+    # def capacidade_maxima(e):
+    #     salario_liquido = float(salario_novo.value)
+    #     desconto_cal = float(descontos_novo.value)
+    #     periodo_mensal = int(periodo_emprestimo.value)
     
-        if salario_liquido < 10000:
-            salario_real = salario_liquido * 0.33
+    #     if salario_liquido < 10000:
+    #         salario_real = salario_liquido * 0.33
         
-        elif salario_liquido >= 10000 and salario_liquido <= 30000:
-            salario_real = salario_liquido * 0.60
+    #     elif salario_liquido >= 10000 and salario_liquido <= 30000:
+    #         salario_real = salario_liquido * 0.60
         
-        elif salario_liquido > 30000:
-            salario_real = salario_liquido * 0.70
+    #     elif salario_liquido > 30000:
+    #         salario_real = salario_liquido * 0.70
         
-        taxa_juro = 0.345/12
-        salario_liquido = salario_real - desconto_cal
+    #     taxa_juro = 0.345/12
+    #     salario_liquido = salario_real - desconto_cal
         
-        capacidadeMaxima = salario_liquido * (1 - (1 + taxa_juro)**(-periodo_mensal))/taxa_juro
+    #     capacidadeMaxima = salario_liquido * (1 - (1 + taxa_juro)**(-periodo_mensal))/taxa_juro
         
-        if periodo_mensal <=12:
-            seguro = capacidadeMaxima * 0.0045
+    #     if periodo_mensal <=12:
+    #         seguro = salario_liquido * 0.0045
         
-        elif periodo_mensal > 12 and periodo_mensal <= 36:
-            seguro = capacidadeMaxima * 0.0033
+    #     elif periodo_mensal > 12 and periodo_mensal <= 36:
+    #         seguro = salario_liquido * 0.0033
         
-        elif periodo_mensal > 36:
-            seguro = capacidadeMaxima * 0.0028
+    #     elif periodo_mensal > 36:
+    #         seguro = salario_liquido * 0.0028
         
         
-        valor_a_receber = capacidadeMaxima - seguro
+    #     valor_a_receber = capacidadeMaxima - seguro
 
 
+    #     tabela_result.rows.append(
+    #         ft.DataRow(
+    #             cells=[
+    #                 ft.DataCell(
+    #                     content=ft.Text(value = f'{periodo_mensal:.0f} Meses'),
+    #                 ),
+    #                 ft.DataCell(
+    #                     content=ft.Text(value = f'{salario_liquido:,.2f} MZN')
+    #                 ),
+    #                 ft.DataCell(
+    #                     content=ft.Text(value = f'{capacidadeMaxima:,.2f} MZN'),
+    #                 ),
+    #             ],
+    #             selected=False,
+    #             on_select_changed=toggle_select,
+    #             data=0,
+                
+    #         ),    
+    #     )
+    #     tabela_result.update()
+
+
+    def capacidade_maxima(e):
+        salario_bruto = float(salario_novo.value)
+        desconto_cal = float(descontos_novo.value)
+        meses = int(periodo_emprestimo.value)
+
+        # Calcular a capacidade de endividamento
+        if salario_bruto <= 10000:
+            capacidade_endividamento = salario_bruto * 0.33
+        elif 10001 <= salario_bruto <= 30000:
+            capacidade_endividamento = salario_bruto * 0.60
+        else:
+            capacidade_endividamento = salario_bruto * 0.70
+
+        # Ajustar a capacidade de endividamento subtraindo os descontos
+        capacidade_endividamento_ajustada = capacidade_endividamento - desconto_cal
+
+        # Verificar se a capacidade de endividamento ajustada é positiva
+        if capacidade_endividamento_ajustada <= 0:
+            tabela_result.rows.append(
+                ft.DataRow(
+                    cells=[
+                        ft.DataCell(
+                            content=ft.Text(value = 'Sem Capacidade'),
+                        ),
+                        ft.DataCell(
+                            content=ft.Text(value = 'Sem Capacidade')
+                        ),
+                        ft.DataCell(
+                            content=ft.Text(value = 'Sem Capacidade'),
+                        ),
+                    ],
+                    selected=False,
+                    on_select_changed=toggle_select,
+                    data=0,
+                    
+                ),    
+            )
+            tabela_result.update()
+
+        # Definir a taxa de juros anual
+        taxa_anual = 0.345
+        juros = taxa_anual / 12
+
+        # Calcular a taxa de seguro com base no período do empréstimo
+        if meses <= 12:
+            taxa_seguro = 0.0045
+        elif 12 < meses <= 36:
+            taxa_seguro = 0.0033
+        else:
+            taxa_seguro = 0.0028
+
+        # Função para calcular a prestação mensal base
+        def calcular_prestacao_mensal(valor_emprestimo, juros, meses):
+            return (valor_emprestimo * juros) / (1 - (1 + juros) ** -meses)
+
+        # Iterar para encontrar o valor máximo do empréstimo
+        valor_emprestimo = 0
+        incremento = 100  # Incremento para ajustar o valor do empréstimo
+        prestacao_mensal_com_seguro = 0  # Inicializar a variável de prestação
+
+        while True:
+            prestacao_mensal_base = calcular_prestacao_mensal(valor_emprestimo, juros, meses)
+            prestacao_mensal_com_seguro = prestacao_mensal_base + (valor_emprestimo * taxa_seguro)
+            
+            if prestacao_mensal_com_seguro > capacidade_endividamento_ajustada:
+                break
+            
+            valor_emprestimo += incremento
+
+        # Ajustar para o valor máximo que não excede a capacidade
+        valor_emprestimo -= incremento
+        prestacao_mensal_base = calcular_prestacao_mensal(valor_emprestimo, juros, meses)
+        prestacao_mensal_com_seguro = prestacao_mensal_base + (valor_emprestimo * taxa_seguro)
+
+        # Exibir a prestação mensal e o valor máximo do empréstimo
+        # print(f"O valor máximo do empréstimo é: {valor_emprestimo:.2f}")
+        # print(f"A prestação mensal será: {prestacao_mensal_com_seguro:.2f}")
         tabela_result.rows.append(
             ft.DataRow(
                 cells=[
                     ft.DataCell(
-                        content=ft.Text(value = f'{periodo_mensal:.0f} Meses'),
+                        content=ft.Text(value = f'{meses} Meses'),
                     ),
                     ft.DataCell(
-                        content=ft.Text(value = f'{salario_liquido:,.2f} MZN')
+                        content=ft.Text(value = f'{prestacao_mensal_com_seguro:,.2f} MZN')
                     ),
                     ft.DataCell(
-                        content=ft.Text(value = f'{capacidadeMaxima:,.2f} MZN'),
+                        content=ft.Text(value = f'{valor_emprestimo:,.2f} MZN'),
                     ),
                 ],
                 selected=False,
@@ -275,7 +374,7 @@ def SimuladorView(page):
                     )
                     
                 ),
-                salario_bruto := ft.TextField(
+                salario_Bruto := ft.TextField(
                     col={'sm':12, 'lg':6},
                     label='Salário Bruto',
                     helper_text = 'Salário que reflete na folha de salário...',
@@ -359,43 +458,132 @@ def SimuladorView(page):
 
     # Calcular reforco
 
-    def prestacao_mensal(e):
+    # def prestacao_mensal(e):
 
-        valor_desejado = float(vl_desejado.value)
-        salario = float(salario_bruto.value)
-        descontos = float(vl_dividas_descontos.value)
-        periodo_mensal = int(tempo_pagamento.value)
-        taxa_juro = 0.345/12
+    #     valor_desejado = float(vl_desejado.value)
+    #     salario = float(salario_bruto.value)
+    #     descontos = float(vl_dividas_descontos.value)
+    #     periodo_mensal = int(tempo_pagamento.value)
+    #     taxa_juro = 0.345/12
 
-        if salario < 10000:
-            salario_real = salario * 0.33
+    #     if salario < 10000:
+    #         salario_real = salario * 0.33
         
-        elif salario >= 10000 and salario <= 30000:
-            salario_real = salario * 0.60
+    #     elif salario >= 10000 and salario <= 30000:
+    #         salario_real = salario * 0.60
         
-        elif salario > 30000:
-            salario_real = salario * 0.70
+    #     elif salario > 30000:
+    #         salario_real = salario * 0.70
        
         
-        salario_liquido = salario_real - descontos
+    #     salario_liquido = salario_real - descontos
 
-        capacidadeMaxima = salario_liquido * (1 - (1 + taxa_juro)**(-periodo_mensal))/taxa_juro
+    #     capacidadeMaxima = salario_liquido * (1 - (1 + taxa_juro)**(-periodo_mensal))/taxa_juro
+        
+        
 
-        if periodo_mensal <= 12:
-            financiamento_maximo = valor_desejado / (1 - 0.0045)
-            seguro = financiamento_maximo * 0.0045
+
+    #     if periodo_mensal <= 12:
+    #         seguro = valor_desejado * 0.0045
         
-        elif periodo_mensal > 12 and periodo_mensal <= 36:
-            financiamento_maximo = valor_desejado / (1 - 0.0033)
-            seguro = financiamento_maximo * 0.0033
+    #     elif periodo_mensal > 12 and periodo_mensal <= 36:
+    #         seguro = valor_desejado * 0.0033
         
-        elif periodo_mensal > 36:
-            financiamento_maximo = valor_desejado / (1 - 0.0028)
-            seguro = financiamento_maximo * 0.0028
+    #     elif periodo_mensal > 36:
+    #         seguro = valor_desejado * 0.0028
+
+    #     prestacao = (valor_desejado * taxa_juro)/(1 - (1 + taxa_juro) ** (-periodo_mensal)) + seguro
+
+    #     print(seguro)
+    #     print(prestacao)
         
-        prestacao = (financiamento_maximo * taxa_juro)/(1 - (1 + taxa_juro) ** (-periodo_mensal))
-        
-        if  capacidadeMaxima < financiamento_maximo:
+    #     if  capacidadeMaxima < valor_desejado:
+    #         tabela_result.rows.append(
+    #             ft.DataRow(
+    #                 cells=[
+    #                     ft.DataCell(
+    #                         content=ft.Text(value = 'Sem Capacidade'),
+    #                     ),
+    #                     ft.DataCell(
+    #                         content=ft.Text(value = 'Sem Capacidade')
+    #                     ),
+    #                     ft.DataCell(
+    #                         content=ft.Text(value = 'Sem Capacidade'),
+    #                     ),
+    #                 ],
+    #                 selected=False,
+    #                 on_select_changed=toggle_select,
+    #                 data=0,
+    #             ),
+    #         )
+
+    #         tabela_result.update()
+    #     else:
+    #         tabela_result.rows.append(
+    #             ft.DataRow(
+    #                 cells=[
+    #                     ft.DataCell(
+    #                         content=ft.Text(value = f'{periodo_mensal} Meses'),
+    #                     ),
+    #                     ft.DataCell(
+    #                         content=ft.Text(value = f' {prestacao:,.2f} MZN')
+    #                     ),
+    #                     ft.DataCell(
+    #                         content=ft.Text(value = f' {valor_desejado} MZN'),
+    #                     ),
+    #                 ],
+    #                 selected=False,
+    #                 on_select_changed=toggle_select,
+    #                 data=0,
+    #             ),
+    #         )
+    #         tabela_result.update()
+
+
+    def prestacao_mensal(e):
+        valor_desejado = float(vl_desejado.value)
+        salario_bruto = float(salario_Bruto.value)
+        desconto_cal = float(vl_dividas_descontos.value)
+        meses = int(tempo_pagamento.value)
+
+        # Calcular a capacidade de endividamento
+        if salario_bruto <= 10000:
+            capacidade_endividamento = salario_bruto * 0.33
+        elif 10001 <= salario_bruto <= 30000:
+            capacidade_endividamento = salario_bruto * 0.60
+        else:
+            capacidade_endividamento = salario_bruto * 0.70
+
+        # Ajustar a capacidade de endividamento subtraindo os descontos
+        capacidade_endividamento_ajustada = capacidade_endividamento - desconto_cal
+
+        # Verificar se a capacidade de endividamento ajustada é positiva
+        if capacidade_endividamento_ajustada <= 0:
+            print("Os descontos são maiores ou iguais à capacidade de endividamento. Não é possível conceder o empréstimo.")
+            exit()
+
+        # Definir a taxa de juros anual
+        taxa_anual = 0.345
+        juros = taxa_anual / 12
+
+        # Calcular a taxa de seguro com base no período do empréstimo
+        if meses <= 12:
+            taxa_seguro = 0.0045
+        elif 12 < meses <= 36:
+            taxa_seguro = 0.0033
+        else:
+            taxa_seguro = 0.0028
+
+        # Função para calcular a prestação mensal base
+        def calcular_prestacao_mensal(valor_emprestimo, juros, meses):
+            return (valor_emprestimo * juros) / (1 - (1 + juros) ** -meses)
+
+        # Calcular a prestação mensal base e com seguro
+        prestacao_mensal_base = calcular_prestacao_mensal(valor_desejado, juros, meses)
+        prestacao_mensal_com_seguro = prestacao_mensal_base + (valor_desejado * taxa_seguro)
+
+        # Verificar se a prestação mensal com seguro excede a capacidade de endividamento ajustada
+        if prestacao_mensal_com_seguro > capacidade_endividamento_ajustada:
             tabela_result.rows.append(
                 ft.DataRow(
                     cells=[
@@ -414,17 +602,19 @@ def SimuladorView(page):
                     data=0,
                 ),
             )
-
             tabela_result.update()
+        
         else:
+            # print(f"O valor do empréstimo é: {valor_desejado:.2f}")
+            # print(f"A prestação mensal será: {prestacao_mensal_com_seguro:.2f}")
             tabela_result.rows.append(
                 ft.DataRow(
                     cells=[
                         ft.DataCell(
-                            content=ft.Text(value = f'{periodo_mensal} Meses'),
+                            content=ft.Text(value = f'{meses} Meses'),
                         ),
                         ft.DataCell(
-                            content=ft.Text(value = f' {prestacao:,.2f} MZN')
+                            content=ft.Text(value = f' {prestacao_mensal_com_seguro:,.2f} MZN')
                         ),
                         ft.DataCell(
                             content=ft.Text(value = f' {valor_desejado} MZN'),
