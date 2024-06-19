@@ -617,7 +617,7 @@ def SimuladorView(page):
                             content=ft.Text(value = f' {prestacao_mensal_com_seguro:,.2f} MZN')
                         ),
                         ft.DataCell(
-                            content=ft.Text(value = f' {valor_desejado} MZN'),
+                            content=ft.Text(value = f' {valor_desejado:,.2f} MZN'),
                         ),
                     ],
                     selected=False,
