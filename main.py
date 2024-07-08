@@ -36,6 +36,10 @@ def main(page: ft.Page):
 
 
     warnings.filterwarnings("ignore", category=DeprecationWarning)
+
+    page.title = 'Simulador Letshego'
+    page.favicon = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlqZVlnLf1RtbZgIzNTrli44LVNqwDLzsvxQ&s'
+
      
         
     def route_change(route):
@@ -93,4 +97,4 @@ def main(page: ft.Page):
     # # page.on_view_pop = view_pop
     page.go(page.route)
 
-ft.app(target=main)
+ft.app(target=main, assets_dir='assets')
